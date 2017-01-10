@@ -1,0 +1,16 @@
+Project Submission
+
+In this capstone project, students will build their own application using
+signature native application features such as device sensor access, offline-first,
+and more.
+
+Supporting Courses: Client-Server Communications coming June 2016.
+
+Evaluation
+Your project will be evaluated by a Udacity reviewer according to this rubric.
+Be sure to review it thoroughly before you submit. All criteria must "meet specifications" in
+order to pass.
+
+Submission
+Once you've completed your project, return to your Udacity Homepage and use
+the Submit Project button to submit a GitHub repository or .zip archive.
