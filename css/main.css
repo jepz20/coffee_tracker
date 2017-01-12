@@ -3,7 +3,6 @@ main {
 }
 
 .login--form {
-  position: absolute;
   width: calc(100% - 40px);
   height: auto;
   min-height: 400px;
@@ -11,15 +10,19 @@ main {
 }
 
 .login--form__brand {
-  background-color: #607D8B;
-  height: 50px;
+  background-color: #ECEFF1;
+  line-height: 80px;
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%
 }
 
 .login--form__brand h2 {
   margin: 0;
+  top: 10px;
   padding: 16px;
-  color: #0B0B0B;
-  color: #fff;
+  color: #4E342E;
+  font-size: 35px;
 }
 
 .login--form__inputs {
@@ -28,7 +31,7 @@ main {
 
 @media only screen and (min-width: 550px) {
   main {
-    width: 720px;
+    width: 550px;
     margin-left: auto;
     margin-right: auto;
 

@@ -13,7 +13,7 @@ const mapStateToProps = (state) => ({
   routing: state.routing,
 });
 
-class Login extends React.Component {
+class Register extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -121,7 +121,7 @@ class Login extends React.Component {
               </h2>
             </div>
             <div className="login--form__title">
-              <h2>Log in To Your Account</h2>
+              <h2>Create Your Account</h2>
             </div>
             <div className="login--form__inputs">
               <form>
@@ -145,7 +145,7 @@ class Login extends React.Component {
                 /><br />
                 <RaisedButton
                   type="submit"
-                  label="Log in"
+                  label="Create Account"
                   onClick={ this.onLoginButton }
                   style= { styles.button.root }
                   primary={ true }
@@ -155,21 +155,8 @@ class Login extends React.Component {
               </form>
               <Divider style={ styles.divider }/>
               <br />
-              <div>or</div>
               <RaisedButton
-                label="Sign in with Google"
-                overlayStyle = { styles.button.overlay }
-                primary={ true }
-                style= { styles.button.root }
-                icon={<FontIcon style={ styles.icon } className="fa fa-google" />}
-                labelStyle={ styles.button.label }
-                onClick = { this.onSignInWithGoggleButton }
-              />
-              <Divider style={ styles.divider }/>
-              <br/>
-              <h4> New to CoffeeT?</h4>
-              <RaisedButton
-                label="Create your account"
+                label="Login"
                 style= { styles.button.root }
                 secondary={ true }
                 labelStyle={ styles.button.labelRegister }
@@ -185,5 +172,5 @@ class Login extends React.Component {
   }
 };
 
-Login = connect(mapStateToProps, actions)(Login);
-export default muiThemeable()(Login);
+Register = connect(mapStateToProps, actions)(Register);
+export default muiThemeable()(Register);

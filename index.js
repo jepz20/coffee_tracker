@@ -2,7 +2,7 @@ import App from './components/App';
 import configureStore from './store/configureStore';
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import { blueGrey500, amber500 } from 'material-ui/styles/colors';
+import { grey50, brown700 } from 'material-ui/styles/colors';
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
@@ -16,8 +16,9 @@ injectTapEventPlugin();
 
 const muiTheme = getMuiTheme({
   palette: {
-    primary1Color: amber500,
-    accent1Color: blueGrey500,
+    primary1Color: '#6CC8C1',
+    accent1Color: grey50,
+    accent2Color: brown700,
   },
   appBar: {
     height: 50,
@@ -36,7 +37,7 @@ render(
     <MuiThemeProvider muiTheme={getMuiTheme(muiTheme)}>
       <Router onUpdate={() => window.scrollTo(0, 0)} history={ history }>
         <Route component={ App }>
-        <Route path="/" component={ MainSection }>
+        <Route path='/' component={ MainSection }>
         </Route>
         </Route>
       </Router>

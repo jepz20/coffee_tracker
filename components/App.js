@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './Header.js';
-import Login from './Login.js';
+import Authentication from './Authentication.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class App extends React.Component {
     let loggedIn = false;
     if (!loggedIn) {
       return (
-        <Login />
+        <Authentication />
       );
     }
 
