@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
+import Header from './Header.js';
 import { hashHistory } from 'react-router';
 
 const mapStateToProps = (state) => ({
@@ -8,7 +9,7 @@ const mapStateToProps = (state) => ({
   user: state.user,
 });
 
-class MainSection extends React.Component {
+class Main extends React.Component {
   constructor(props) {
     super(props);
     this.redirectIfNotLogin = this.redirectIfNotLogin.bind(this);
@@ -33,21 +34,20 @@ class MainSection extends React.Component {
   }
 
   render() {
-    const { user, logout } = this.props;
+    const { user } = this.props;
     if (user.logged == -1) {
       return <div>Loading...</div>;
     }
 
     return (
-        <main>
-          <div>Hola Perrada</div>
-          <button onClick={ logout }>Logout</button>
-          { this.props.children}
-        </main>
+      <div>
+        <Header />
+        { this.props.children }
+      </div>
     );
   }
 }
 
-MainSection = connect(mapStateToProps, actions)(MainSection);
+Main = connect(mapStateToProps, actions)(Main);
 
-export default MainSection;
+export default Main;

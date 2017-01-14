@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from './Header.js';
 import Authentication from './Authentication.js';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
