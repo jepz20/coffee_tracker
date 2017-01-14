@@ -34,7 +34,7 @@ const history = syncHistoryWithStore(hashHistory, store);
 
 render(
   <Provider store={ store }>
-    <MuiThemeProvider muiTheme={getMuiTheme(muiTheme)}>
+    <MuiThemeProvider muiTheme={muiTheme}>
       <Router onUpdate={() => window.scrollTo(0, 0)} history={ history }>
         <Route component={ App }>
         <Route path='/' component={ MainSection }>

@@ -1,6 +1,7 @@
 const defaultState = {
   showLogin: true,
   userInfo: {},
+  loginError: '',
 };
 
 export default function(state=defaultState, action) {
@@ -13,7 +14,7 @@ export default function(state=defaultState, action) {
       if (action.userInfo.status == 'success') {
         console.log('proceed with login');
       } else {
-        console.log('please fixit');
+        return { ...state, loginError: action.userInfo.error.message };
       }
 
       return state;
