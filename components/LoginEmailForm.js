@@ -20,7 +20,7 @@ const LoginEmailForm = props => (
       id="loginPassword"
       validate={ required }
       label="Password" />
-
+    <br/>
     { props.loginError && <div className="form--error"> { props.loginError } </div> }
     <PrimaryButton label="Login" type="submit"
       disabled={ (props.submitting || props.invalid) && !props.pristine }

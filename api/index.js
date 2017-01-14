@@ -1,9 +1,17 @@
 import { firebaseAuth, googleProvider } from '../utils/firebase.js';
 
-export const createNewUser = (email, password) => (
+export const createNewUser = (email, password, name) => (
   firebaseAuth.createUserWithEmailAndPassword(email, password)
-  .then(response => response)
-  .catch(error => error)
+  .then(response => {
+    const user = firebaseAuth.currentUser;
+    console.log(user, 'enapi');
+    console.log(name, 'enapi');
+    user.updateProfile({
+      displayName: name,
+    });
+    return { status: 'success', response };
+  })
+  .catch(error => ({ status: 'error', error }))
 );
 
 export const signInWithEmail = (email, password) => (
@@ -17,3 +25,7 @@ export const signInWithGoogle = () => (
   .then(response => ({ status: 'success', response }))
   .catch(error => ({ status: 'error', error }))
 );
+
+export const logout = () => (
+  firebaseAuth.signOut()
+)

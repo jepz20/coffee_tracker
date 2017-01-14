@@ -7,6 +7,7 @@ import authStyles from '../styles/authentication.js';
 import RegisterEmailForm from '../components/RegisterEmailForm.js';
 import Paper from 'material-ui/Paper';
 import { PrimaryButton, SecondaryButton } from './CoffeeButtons';
+import { hashHistory } from 'react-router';
 
 const mapStateToProps = (state) => ({
   login: state.login,
@@ -22,22 +23,25 @@ class Register extends React.Component {
   }
 
   onSignInWithGoogleButton() {
-    const { signInWithGoogle } = this.props;
+    const { signInWithGoogle, setUserInfo } = this.props;
+    setUserInfo({ logged: -1, userInfo: {} });
     signInWithGoogle();
   }
 
   onLoginButton() {
     const { toggleShowLogin } = this.props;
+    hashHistory.push('/login');
     toggleShowLogin();
   }
 
   onCreateAccountButton(value) {
     const { createNewUser } = this.props;
-    const { registerEmail, registerPassword } = value;
-    createNewUser(registerEmail, registerPassword);
+    const { registerEmail, registerPassword, registerName } = value;
+    createNewUser(registerEmail, registerPassword, registerName);
   }
 
   render() {
+    const { loginError } = this.props.login;
     return (
       <main>
         <div className="login--form">
@@ -52,7 +56,10 @@ class Register extends React.Component {
               <h2>Create Your Account</h2>
             </div>
             <div className="login--form__inputs">
-              <RegisterEmailForm doSubmit={ this.onCreateAccountButton }/>
+              <RegisterEmailForm
+                doSubmit={ this.onCreateAccountButton }
+                registerError= { loginError }
+              />
               <Divider style={ authStyles.divider }/>
               <br />
               <div>or</div>
@@ -64,7 +71,7 @@ class Register extends React.Component {
               <Divider style={ authStyles.divider }/>
               <br/>
               <h4> Already Have an Account?</h4>
-              <PrimaryButton
+              <SecondaryButton
                 label="Login"
                 onClick = {this.onLoginButton }
               />

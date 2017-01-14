@@ -1,12 +1,12 @@
 import * as api from '../api';
 
-export const setCreatedUser = createdUserInfo => ({
+export const setCreatedUser = userInfo => ({
   type: 'SET_CREATED_USER',
-  createdUserInfo,
+  userInfo,
 });
 
-export const setUserCredential = userInfo => ({
-  type: 'SET_USER_CREDENTIAL',
+export const doLogin = userInfo => ({
+  type: 'DO_LOGIN',
   userInfo,
 });
 
@@ -14,14 +14,28 @@ export const toggleShowLogin = () => ({
   type: 'TOGGLE_SHOW_LOGIN',
 });
 
-export const createNewUser = (email, password) =>
-  api.createNewUser(email, password)
+export const setUserInfo = userInfo => ({
+  type: 'SET_USER_INFO',
+  userInfo,
+});
+
+export const setLastRoute = route => ({
+  type: 'SET_LAST_ROUTE',
+  route,
+});
+
+export const createNewUser = (email, password, name) =>
+  api.createNewUser(email, password, name)
   .then(response => setCreatedUser(response));
 
 export const signInWithEmail = (email, password) =>
     api.signInWithEmail(email, password)
-    .then(response => setUserCredential(response));
+    .then(response => doLogin(response));
 
 export const signInWithGoogle = () =>
     api.signInWithGoogle()
-    .then(response => setUserCredential(response));
+    .then(response => doLogin(response));
+
+export const logout = () =>
+    api.logout()
+    .then(() => setUserInfo({ logged: 0 }));

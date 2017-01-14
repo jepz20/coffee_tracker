@@ -8,6 +8,7 @@ import Paper from 'material-ui/Paper';
 import authStyles from '../styles/authentication.js';
 import LoginEmailForm from './LoginEmailForm.js';
 import { PrimaryButton, SecondaryButton } from './CoffeeButtons';
+import { hashHistory } from 'react-router';
 
 const mapStateToProps = (state) => ({
   login: state.login,
@@ -29,12 +30,14 @@ class Login extends React.Component {
   }
 
   onSignInWithGoogleButton() {
-    const { signInWithGoogle } = this.props;
+    const { signInWithGoogle, setUserInfo } = this.props;
+    setUserInfo({ logged: -1, userInfo: {} });
     signInWithGoogle();
   }
 
   onCreateAccountButton() {
     const { toggleShowLogin } = this.props;
+    hashHistory.push('/login?register=true');
     toggleShowLogin();
   }
 

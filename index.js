@@ -11,6 +11,7 @@ import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MainSection from './components/Main.js';
+import Authentication from './components/Authentication.js';
 
 injectTapEventPlugin();
 
@@ -31,14 +32,19 @@ import './css/main.css';
 
 const store = configureStore();
 const history = syncHistoryWithStore(hashHistory, store);
+const NoMatch = () => (
+  <div>No Existo</div>
+)
 
 render(
   <Provider store={ store }>
     <MuiThemeProvider muiTheme={muiTheme}>
       <Router onUpdate={() => window.scrollTo(0, 0)} history={ history }>
         <Route component={ App }>
-        <Route path='/' component={ MainSection }>
-        </Route>
+          <Route path='/' component={ MainSection }>
+          </Route>
+          <Route path='/login' component={ Authentication } />
+          <Route path="*" component={NoMatch} status={404}/>
         </Route>
       </Router>
     </MuiThemeProvider>

@@ -31,6 +31,7 @@ main {
 
 .form--error {
   position: relative;
+  margin-top: 15px;
   bottom: 15px;
   font-size: 16px;
   line-height: 16px;
