@@ -36,9 +36,9 @@ class Login extends React.Component {
   }
 
   onCreateAccountButton() {
-    const { toggleShowLogin } = this.props;
+    const { setRegisterScreen } = this.props;
     hashHistory.push('/login?register=true');
-    toggleShowLogin();
+    setRegisterScreen();
   }
 
   render() {

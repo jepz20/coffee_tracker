@@ -12,6 +12,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import Main from './components/Main.js';
 import Content from './components/Content.js';
+import Map from './components/Map.js';
+import News from './components/News.js';
 import Authentication from './components/Authentication.js';
 
 injectTapEventPlugin();
@@ -35,7 +37,7 @@ const store = configureStore();
 const history = syncHistoryWithStore(hashHistory, store);
 const NoMatch = () => (
   <div>No Existo</div>
-)
+);
 
 render(
   <Provider store={ store }>
@@ -43,7 +45,9 @@ render(
       <Router onUpdate={() => window.scrollTo(0, 0)} history={ history }>
         <Route component={ App }>
           <Route component={ Main }>
-            <Route path='/' component={ Content} />
+            <Route path='/' component={ Content } />
+            <Route path='/map' component={ Map } />
+            <Route path='/news' component={ News } />
           </Route>
           <Route path='/login' component={ Authentication } />
           <Route path="*" component={NoMatch} status={404}/>

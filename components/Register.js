@@ -29,9 +29,9 @@ class Register extends React.Component {
   }
 
   onLoginButton() {
-    const { toggleShowLogin } = this.props;
+    const { setLoginScreen } = this.props;
     hashHistory.push('/login');
-    toggleShowLogin();
+    setLoginScreen();
   }
 
   onCreateAccountButton(value) {

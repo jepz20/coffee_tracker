@@ -9,13 +9,12 @@ export default function(state=defaultState, action) {
   switch (action.type) {
     case 'SET_CREATED_USER':
       if (action.userInfo.status == 'success') {
-        console.log('proceed with login');
+        return state;
       } else {
         return { ...state, loginError: action.userInfo.error.message };
       }
 
     case 'DO_LOGIN':
-      console.log(action.userInfo);
       if (action.userInfo.status == 'success') {
         return state;
       } else {
@@ -23,9 +22,10 @@ export default function(state=defaultState, action) {
       }
 
       return state;
-    case 'TOGGLE_SHOW_LOGIN':
-      let showLogin = !state.showLogin;
-      return { ...state, showLogin, loginError: '' };
+    case 'SET_LOGIN_SCREEN':
+      return { ...state, showLogin: true, loginError: '' };
+    case 'SET_REGISTER_SCREEN':
+      return { ...state, showLogin: false, loginError: '' };
     default:
       return state;
   }

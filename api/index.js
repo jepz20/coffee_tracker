@@ -28,4 +28,4 @@ export const signInWithGoogle = () => (
 
 export const logout = () => (
   firebaseAuth.signOut()
-)
+);

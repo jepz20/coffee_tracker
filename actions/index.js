@@ -10,8 +10,12 @@ export const doLogin = userInfo => ({
   userInfo,
 });
 
-export const toggleShowLogin = () => ({
-  type: 'TOGGLE_SHOW_LOGIN',
+export const setLoginScreen = () => ({
+  type: 'SET_LOGIN_SCREEN',
+});
+
+export const setRegisterScreen = () => ({
+  type: 'SET_REGISTER_SCREEN',
 });
 
 export const setUserInfo = userInfo => ({
@@ -22,6 +26,19 @@ export const setUserInfo = userInfo => ({
 export const setLastRoute = route => ({
   type: 'SET_LAST_ROUTE',
   route,
+});
+
+export const setHeadersValues = values => ({
+  type: 'SET_HEADER_VALUES',
+  values,
+});
+
+export const toggleDrawerOpen = () => ({
+  type: 'TOGGLE_DRAWER_OPEN',
+});
+
+export const closeDrawer = () => ({
+  type: 'CLOSE_DRAWER',
 });
 
 export const createNewUser = (email, password, name) =>
@@ -38,4 +55,4 @@ export const signInWithGoogle = () =>
 
 export const logout = () =>
     api.logout()
-    .then(() => setUserInfo({ logged: 0 }));
+    .then(() => setUserInfo({ logged: 0, userInfo: {} }));

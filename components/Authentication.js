@@ -27,11 +27,11 @@ class Authentication extends React.Component {
   }
 
   componentWillMount() {
-    const { toggleShowLogin, routing } = this.props;
+    const { setRegisterScreen, routing } = this.props;
     this.redirectToPage();
 
     if (routing.locationBeforeTransitions.query.register) {
-      toggleShowLogin();
+      setRegisterScreen();
     };
   }
 
