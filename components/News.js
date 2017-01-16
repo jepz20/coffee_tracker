@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import { hashHistory } from 'react-router';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
-import IconButton from 'material-ui/IconButton';
+import FontIcon from 'material-ui/FontIcon';
 import InfiniteScroll from 'react-infinite-scroller';
 import { limitText } from '../utils/strings.js';
+import Loader from '../components/Loader';
+import { secondaryColor } from '../styles/general.js';
 
 const NewsCard = props => {
   const { newsDetail } = props;
@@ -22,12 +24,26 @@ const NewsCard = props => {
     }
   };
 
+  const handleEnter = evt => {
+    if (evt.key === 'Enter') {
+      enterNews();
+    }
+  };
+  const subtitle = newsDetail.isExternalLink
+    ? `Source: ${newsDetail.originalSource}`
+    : `Author: ${newsDetail.author}`
   return (
     <div>
-      <Card onClick={ enterNews } role="link"> {
+      <Card
+        onClick={ enterNews }
+        onKeyPress={ handleEnter }
+        role="link"
+        tabIndex="0"
+      >
+        {
           newsDetail.isExternalLink ?
-            <CardText style={ { padding: 0, fontSize: 16 } }>
-              <IconButton style={{ padding: 0 }} iconClassName="fa fa-external-link" />
+            <CardText style={ { ...secondaryColor, padding: 0, fontSize: 16 } }>
+              <FontIcon style={{ ...secondaryColor, padding: 10 }} className="fa fa-external-link" />
               External Link
             </CardText>
           : <div></div>
@@ -35,7 +51,7 @@ const NewsCard = props => {
         <CardMedia
           overlay={
             <CardTitle title={newsDetail.title}
-              subtitle={`Source: ${newsDetail.originalSource}`}
+              subtitle={ subtitle }
             />
           }
           >
@@ -80,22 +96,20 @@ class News extends React.Component {
     };
 
     return (
-      <main>
-        <div className="news--container">
-          <InfiniteScroll
-            pageStart={0}
-            loadMore={loadFunc}
-            hasMore={hasMoreItems}
-            loader={<div className="loader">Loading ...</div>}
-            >
-              {
-                Object.keys(newsFeed).reverse().map(key => (
-                  <NewsCard key={key} newsDetail={newsFeed[key]}/>
-                ))
-              }
-            </InfiniteScroll>
-        </div>
-      </main>
+      <div className="news--container">
+        <InfiniteScroll
+          pageStart={0}
+          loadMore={loadFunc}
+          hasMore={hasMoreItems}
+          loader={ <Loader /> }
+          >
+            {
+              Object.keys(newsFeed).reverse().map(key => (
+                <NewsCard key={key} newsDetail={newsFeed[key]}/>
+              ))
+            }
+          </InfiniteScroll>
+      </div>
     );
   }
 }

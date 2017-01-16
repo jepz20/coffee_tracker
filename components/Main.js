@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import Header from './Header.js';
 import { hashHistory } from 'react-router';
+import Loader from '../components/Loader';
 
 const mapStateToProps = (state) => ({
   routing: state.routing,
@@ -36,13 +37,15 @@ class Main extends React.Component {
   render() {
     const { user } = this.props;
     if (user.logged == -1) {
-      return <div>Loading...</div>;
+      return <Loader />;
     }
 
     return (
       <div>
         <Header />
-        { this.props.children }
+        <main>
+          { this.props.children }
+        </main>
       </div>
     );
   }

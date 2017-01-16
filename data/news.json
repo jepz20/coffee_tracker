@@ -17,7 +17,8 @@
     "externalLink": "https://www.ft.com/content/0da4ec0e-d982-11e6-944b-e7eb37a6aa8e",
     "date": 1481169605,
     "originalSource": "Financial Times",
-    "isExternalLink": true
+    "isExternalLink": false,
+    "author": "Jose Perdomo"
   },
   "2" :{
     "id": 2,
@@ -27,7 +28,8 @@
     "externalLink": "https://bgr.com/2017/01/13/coffee-genome-public-release/",
     "date": 1481169605,
     "originalSource": "BGR",
-    "isExternalLink": false
+    "isExternalLink": false,
+    "author": "Jose Perdomo"
   },
   "3" :{
     "id": 3,
@@ -67,7 +69,8 @@
     "externalLink": "https://bgr.com/2017/01/13/coffee-genome-public-release/",
     "date": 1481169605,
     "originalSource": "Financial Times",
-    "isExternalLink": false
+    "isExternalLink": false,
+    "author": "Jose Perdomo"
   },
   "7" :{
     "id": 7,

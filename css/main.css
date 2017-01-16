@@ -9,10 +9,46 @@
 
 main {
   width: 100%;
+  padding-top: 16px;
 }
 
 .news--container {
-  padding-top: 16px;
+
+}
+
+.header__title, .header__title:hover{
+  text-decoration: none;
+  color: inherit;
+}
+
+.news--landing h2 {
+  font-size: 40px;
+  padding-top: 10px;
+  line-height: 1.04;
+  margin: 0;
+}
+
+.news--landing img {
+  width: 100%;
+  height: auto;
+  padding-bottom: 20px;
+}
+
+.news--landing h2 div {
+  font-size: 16px;
+
+  line-height: 1.5;
+  color: rgb(108, 200, 193);
+}
+
+.news--landing__description {
+  margin-top: 31px;
+  font-size: 21px;
+  line-height: 1.58;
+}
+
+.news--landing {
+
 }
 
 .login--form {

@@ -4,6 +4,7 @@ import * as actions from '../actions';
 import { hashHistory } from 'react-router';
 import Login from './Login.js';
 import Register from './Register.js';
+import Loader from '../components/Loader';
 
 const mapStateToProps = (state) => ({
   login: state.login,
@@ -42,7 +43,7 @@ class Authentication extends React.Component {
   render() {
     const { login, user } = this.props;
     if (user.logged == -1) {
-      return <div>Loading...</div>;
+      return <Loader />;
     }
 
     if (login.showLogin) {

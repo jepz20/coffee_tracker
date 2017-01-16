@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import { hashHistory } from 'react-router';
+import { hashHistory, Link } from 'react-router';
 import AppBar from 'material-ui/AppBar';
 import MenuItem from 'material-ui/MenuItem';
 import IconMenu from 'material-ui/IconMenu';
@@ -9,7 +9,7 @@ import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import Drawer from 'material-ui/Drawer';
-import { icons } from '../styles/general.js';
+import { icons, primaryColor } from '../styles/general.js';
 import FontIcon from 'material-ui/FontIcon';
 
 const mapStateToProps = (state) => ({
@@ -74,10 +74,12 @@ class Header extends React.Component {
       closeDrawer();
     };
 
+    const drawerTabIndex = header.drawerOpen ? 0 : -1;
+    console.log(drawerTabIndex, 'DTI');
     return (
       <header>
         <AppBar
-          title= { header.title }
+          title= { <Link to="/" className="header__title">{ header.title }</Link>  }
           onLeftIconButtonTouchTap = { toggleDrawerOpen }
           iconElementRight = {
             <div>
@@ -100,8 +102,10 @@ class Header extends React.Component {
           open={ header.drawerOpen }
           docked={false}
           onRequestChange={(open) => toggleDrawerOpen()}
+          tabIndex={ drawerTabIndex }
         >
           <MenuItem
+            tabIndex={ drawerTabIndex }
             onTouchTap={ () => goToRoute('/') }
           >
             <h2>{ `Hello ${displayName || ''}` }</h2>
@@ -109,7 +113,8 @@ class Header extends React.Component {
           {
             header.menuItems.map(item => (
               <MenuItem
-                leftIcon={ <IconButton style={{ padding: 0 }} iconClassName={item.icon} /> }
+                tabIndex={ drawerTabIndex }
+                leftIcon={ <FontIcon style= { primaryColor } className={item.icon} /> }
                 key={item.index}
                 onTouchTap={ () => goToRoute(item.route) }
               >

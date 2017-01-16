@@ -36,6 +36,25 @@ export const fetchMoreNews = (lastQueryKey, limitTo=5) => {
   );
 };
 
+export const fetchNewsById = (id) => {
+  const newsRef =  firebaseDb.ref(`/news/${id}`);
+  return (
+    dispatch => {
+      newsRef.on('value', snapshot=> {
+        dispatch({
+          type: 'RECEIVE_NEWS_LANDING_DETAIL',
+          newsDetail: snapshot.val(),
+        });
+      });
+    }
+  );
+};
+
+export const receiveNewsLandingDetail = newsDetail => ({
+  type: 'RECEIVE_NEWS_LANDING_DETAIL',
+  newsDetail,
+});
+
 export const setResetLastQuery = () => ({
   type: 'SET_RESET_LAST_QUERY',
 });
