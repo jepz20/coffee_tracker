@@ -29,25 +29,39 @@ const NewsCard = props => {
       enterNews();
     }
   };
-  const subtitle = newsDetail.isExternalLink
-    ? `Source: ${newsDetail.originalSource}`
-    : `Author: ${newsDetail.author}`
+
+  let subtitle;
+  let href;
+  let ExternalHeader;
+
+  if (newsDetail.isExternalLink) {
+    subtitle = `Source: ${newsDetail.originalSource}`;
+    href = newsDetail.externalLink;
+    ExternalHeader =
+      <CardText style={ { ...secondaryColor, padding: 0, fontSize: 16 } }>
+        <FontIcon
+          style={{ ...secondaryColor, padding: 10 }}
+          className="fa fa-external-link"
+        />
+        External Link
+      </CardText>;
+  } else {
+    subtitle = `Author: ${newsDetail.author}`;
+    href = `/news/${newsDetail.id}`;
+    ExternalHeader = null;
+  }
+
   return (
     <div>
       <Card
         onClick={ enterNews }
         onKeyPress={ handleEnter }
+        style={ { cursor: 'pointer' } }
         role="link"
         tabIndex="0"
+        href={href}
       >
-        {
-          newsDetail.isExternalLink ?
-            <CardText style={ { ...secondaryColor, padding: 0, fontSize: 16 } }>
-              <FontIcon style={{ ...secondaryColor, padding: 10 }} className="fa fa-external-link" />
-              External Link
-            </CardText>
-          : <div></div>
-        }
+        { ExternalHeader }
         <CardMedia
           overlay={
             <CardTitle title={newsDetail.title}

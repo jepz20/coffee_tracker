@@ -25,41 +25,7 @@ class Header extends React.Component {
   }
 
   componentWillMount() {
-    const { setHeadersValues } = this.props;
-    const headerValues = {
-      title: 'CoffeeT',
-      titleIcon: 'fa fa-tachometer',
-      githubLink: 'https://github.com/jepz20/coffee_tracker',
-      menuItems: [
-        {
-          label: 'News',
-          icon: 'fa fa-newspaper-o',
-          index: 0,
-          route: '/news',
-        }, {
-          label: 'Map',
-          icon: 'fa fa-map',
-          index: 1,
-          route: '/map',
-        }, {
-          label: 'Budget',
-          icon: 'fa fa-money',
-          index: 2,
-          route: '/budget',
-        }, {
-          label: 'Events',
-          icon: 'fa fa-clock-o',
-          index: 3,
-          route: '/events',
-        }, {
-          label: 'Graphs',
-          icon: 'fa fa-bar-chart',
-          index: 4,
-          route: '/graphs',
-        },
-      ],
-    };
-
+    const { setHeadersValues, headerValues } = this.props;
     setHeadersValues(headerValues);
   }
 
@@ -75,9 +41,34 @@ class Header extends React.Component {
     };
 
     const drawerTabIndex = header.drawerOpen ? 0 : -1;
-    console.log(drawerTabIndex, 'DTI');
+    let focusableElements = header.menuItems.map(item => `drawerItem${item.index}`);
+    focusableElements.unshift('drawerItemHeader');
+    let firstTab = true;
+    let lastTabIndex = -1;
+    const handleTab = e => {
+      // if drawer is open and is the tab Key handle focus
+      if (header.drawerOpen && e.which === 9) {
+        e.preventDefault();
+        if (!e.shiftKey) {
+          lastTabIndex++;
+        } else {
+          lastTabIndex--;
+        }
+
+        if (lastTabIndex >= focusableElements.length) {
+          lastTabIndex = 0;
+        }
+
+        if (lastTabIndex < 0) {
+          lastTabIndex = focusableElements.length - 1;
+        }
+
+        document.getElementById(focusableElements[lastTabIndex]).focus();
+      }
+    };
+
     return (
-      <header>
+      <header onKeyDown= { handleTab }>
         <AppBar
           title= { <Link to="/" className="header__title">{ header.title }</Link>  }
           onLeftIconButtonTouchTap = { toggleDrawerOpen }
@@ -106,6 +97,7 @@ class Header extends React.Component {
         >
           <MenuItem
             tabIndex={ drawerTabIndex }
+            id="drawerItemHeader"
             onTouchTap={ () => goToRoute('/') }
           >
             <h2>{ `Hello ${displayName || ''}` }</h2>
@@ -116,6 +108,7 @@ class Header extends React.Component {
                 tabIndex={ drawerTabIndex }
                 leftIcon={ <FontIcon style= { primaryColor } className={item.icon} /> }
                 key={item.index}
+                id={`drawerItem${item.index}`}
                 onTouchTap={ () => goToRoute(item.route) }
               >
                 { item.label }

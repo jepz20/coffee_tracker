@@ -40,9 +40,42 @@ class Main extends React.Component {
       return <Loader />;
     }
 
+    const headerValues = {
+      title: 'CoffeeT',
+      titleIcon: 'fa fa-tachometer',
+      githubLink: 'https://github.com/jepz20/coffee_tracker',
+      menuItems: [
+        {
+          label: 'News',
+          icon: 'fa fa-newspaper-o',
+          index: 0,
+          route: '/news',
+        }, {
+          label: 'Map',
+          icon: 'fa fa-map',
+          index: 1,
+          route: '/map',
+        }, {
+          label: 'Budget',
+          icon: 'fa fa-money',
+          index: 2,
+          route: '/budget',
+        }, {
+          label: 'Events',
+          icon: 'fa fa-clock-o',
+          index: 3,
+          route: '/events',
+        }, {
+          label: 'Graphs',
+          icon: 'fa fa-bar-chart',
+          index: 4,
+          route: '/graphs',
+        },
+      ],
+    };
     return (
       <div>
-        <Header />
+        <Header headerValues={ headerValues }/>
         <main>
           { this.props.children }
         </main>
