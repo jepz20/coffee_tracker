@@ -27,7 +27,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="coffeet">
+      <div className="app">
         { this.props.children }
       </div>
     );

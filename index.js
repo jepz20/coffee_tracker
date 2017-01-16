@@ -15,6 +15,7 @@ import Content from './components/Content.js';
 import Map from './components/Map.js';
 import News from './components/News.js';
 import Authentication from './components/Authentication.js';
+import NewsLanding from './components/NewsLanding.js';
 
 injectTapEventPlugin();
 
@@ -45,9 +46,10 @@ render(
       <Router onUpdate={() => window.scrollTo(0, 0)} history={ history }>
         <Route component={ App }>
           <Route component={ Main }>
-            <Route path='/' component={ Content } />
+            <Route path='/' component={ News } />
             <Route path='/map' component={ Map } />
             <Route path='/news' component={ News } />
+            <Route path='/news/:id' component={ NewsLanding } />
           </Route>
           <Route path='/login' component={ Authentication } />
           <Route path="*" component={NoMatch} status={404}/>

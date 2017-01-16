@@ -1,5 +1,18 @@
+.app {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column
+}
+
 main {
   width: 100%;
+}
+
+.news--container {
+  padding-top: 16px;
 }
 
 .login--form {
@@ -45,5 +58,30 @@ main {
     margin-left: auto;
     margin-right: auto;
 
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  main {
+    margin-left: auto;
+    margin-right: auto;
+    width: 720px;
+  }
+
+}
+
+@media only screen and (min-width: 991px) {
+  main {
+    margin-left: auto;
+    margin-right: auto;
+    width: 940px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  main {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1140px;
   }
 }

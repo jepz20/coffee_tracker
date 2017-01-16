@@ -1,5 +1,4 @@
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-console.log(getMuiTheme().palette);
 const styles = {
   form: {
     height: '100%',

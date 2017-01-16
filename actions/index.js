@@ -1,4 +1,50 @@
 import * as api from '../api';
+import { firebaseDb } from '../utils/firebase.js';
+
+export const fetchFirstNews = (limitTo=5) => {
+  const newsRef =  firebaseDb.ref(`/news`);
+  return (
+    dispatch => {
+      newsRef.orderByKey()
+      .limitToLast(limitTo)
+      .on('child_added', (childSnapshot, prevChildKey) => {
+        dispatch({
+          type: 'SET_NEWS_FEED',
+          newsItem: childSnapshot.val(),
+          newsKey: childSnapshot.key,
+        });
+      });
+    }
+  );
+};
+
+export const fetchMoreNews = (lastQueryKey, limitTo=5) => {
+  const newsRef =  firebaseDb.ref(`/news`);
+  return (
+    dispatch => {
+      newsRef.orderByKey()
+      .endAt(lastQueryKey)
+      .limitToLast(limitTo)
+      .on('child_added', (childSnapshot, prevChildKey) => {
+        dispatch({
+          type: 'SET_NEWS_FEED',
+          newsItem: childSnapshot.val(),
+          newsKey: childSnapshot.key,
+        });
+      });
+    }
+  );
+};
+
+export const setResetLastQuery = () => ({
+  type: 'SET_RESET_LAST_QUERY',
+});
+
+export const setNewsFeed = newsFeed => ({
+  type: 'SET_NEWS_FEED',
+  newsItem,
+  newsKey,
+});
 
 export const setCreatedUser = userInfo => ({
   type: 'SET_CREATED_USER',

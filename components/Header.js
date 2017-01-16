@@ -33,27 +33,27 @@ class Header extends React.Component {
       menuItems: [
         {
           label: 'News',
-          icon: 'fa fa-github',
+          icon: 'fa fa-newspaper-o',
           index: 0,
           route: '/news',
         }, {
           label: 'Map',
-          icon: 'fa fa-map-marker',
+          icon: 'fa fa-map',
           index: 1,
           route: '/map',
         }, {
           label: 'Budget',
-          icon: 'fa fa-map',
+          icon: 'fa fa-money',
           index: 2,
           route: '/budget',
         }, {
           label: 'Events',
-          icon: 'fa fa-google',
+          icon: 'fa fa-clock-o',
           index: 3,
           route: '/events',
         }, {
           label: 'Graphs',
-          icon: 'fa fa-facebook',
+          icon: 'fa fa-bar-chart',
           index: 4,
           route: '/graphs',
         },
