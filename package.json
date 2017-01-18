@@ -58,7 +58,8 @@
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.1.0",
     "serve-favicon": "^2.3.0",
-    "sw-toolbox": "^3.2.1"
+    "sw-toolbox": "^3.2.1",
+    "uuid": "^3.0.1"
   },
   "devDependencies": {
     "babel-core": "^6.10.4",

@@ -100,7 +100,7 @@ class News extends React.Component {
     const { news, fetchMoreNews, setResetLastQuery } = this.props;
     const { newsFeed, lastQueryKey, hasMoreItems, loading } = news;
 
-    const loadFunc = () => {
+    const loadMore = () => {
       if (loading) {
         return;
       }
@@ -113,7 +113,7 @@ class News extends React.Component {
       <div className="news--container">
         <InfiniteScroll
           pageStart={0}
-          loadMore={loadFunc}
+          loadMore={loadMore}
           hasMore={hasMoreItems}
           loader={ <Loader /> }
           >

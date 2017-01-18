@@ -16,6 +16,7 @@ import Map from './components/Map.js';
 import News from './components/News.js';
 import Authentication from './components/Authentication.js';
 import NewsLanding from './components/NewsLanding.js';
+import Error404 from './components/404.js';
 
 injectTapEventPlugin();
 
@@ -36,9 +37,6 @@ import './css/main.css';
 
 const store = configureStore();
 const history = syncHistoryWithStore(hashHistory, store);
-const NoMatch = () => (
-  <div>No Existo</div>
-);
 
 render(
   <Provider store={ store }>
@@ -52,7 +50,7 @@ render(
             <Route path='/news/:id' component={ NewsLanding } />
           </Route>
           <Route path='/login' component={ Authentication } />
-          <Route path="*" component={NoMatch} status={404}/>
+          <Route path="*" component={Error404} status={404}/>
         </Route>
       </Router>
     </MuiThemeProvider>

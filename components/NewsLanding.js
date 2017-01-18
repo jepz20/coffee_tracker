@@ -1,6 +1,7 @@
 import React from 'react';
 import * as actions from '../actions';
 import { connect } from 'react-redux';
+import { hashHistory } from 'react-router';
 import Divider from 'material-ui/Divider';
 import Subheader from 'material-ui/Subheader';
 import Loader from '../components/Loader';

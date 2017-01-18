@@ -1,6 +1,15 @@
 import * as api from '../api';
 import { firebaseDb } from '../utils/firebase.js';
 
+//MAP ACTIONS
+export const boundsChanged = (center, zoom, bounds) => ({
+  type: 'BOUNDS_CHANGED',
+  center,
+  zoom,
+  bounds,
+});
+
+//NEWS ACTIONS
 export const fetchFirstNews = (limitTo=5) => {
   const newsRef =  firebaseDb.ref(`/news`);
   return (
@@ -70,6 +79,7 @@ export const setCreatedUser = userInfo => ({
   userInfo,
 });
 
+//LOGIN ACTIONS
 export const doLogin = userInfo => ({
   type: 'DO_LOGIN',
   userInfo,
@@ -87,12 +97,29 @@ export const setUserInfo = userInfo => ({
   type: 'SET_USER_INFO',
   userInfo,
 });
+export const createNewUser = (email, password, name) =>
+api.createNewUser(email, password, name)
+.then(response => setCreatedUser(response));
 
+export const signInWithEmail = (email, password) =>
+api.signInWithEmail(email, password)
+.then(response => doLogin(response));
+
+export const signInWithGoogle = () =>
+api.signInWithGoogle()
+.then(response => doLogin(response));
+
+export const logout = () =>
+api.logout()
+.then(() => setUserInfo({ logged: 0, userInfo: {} }));
+
+// ROUTE ACTIONS
 export const setLastRoute = route => ({
   type: 'SET_LAST_ROUTE',
   route,
 });
 
+//HEADER ACTIONS
 export const setHeadersValues = values => ({
   type: 'SET_HEADER_VALUES',
   values,
@@ -105,19 +132,3 @@ export const toggleDrawerOpen = () => ({
 export const closeDrawer = () => ({
   type: 'CLOSE_DRAWER',
 });
-
-export const createNewUser = (email, password, name) =>
-  api.createNewUser(email, password, name)
-  .then(response => setCreatedUser(response));
-
-export const signInWithEmail = (email, password) =>
-    api.signInWithEmail(email, password)
-    .then(response => doLogin(response));
-
-export const signInWithGoogle = () =>
-    api.signInWithGoogle()
-    .then(response => doLogin(response));
-
-export const logout = () =>
-    api.logout()
-    .then(() => setUserInfo({ logged: 0, userInfo: {} }));

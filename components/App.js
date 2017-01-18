@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import { hashHistory } from 'react-router';
 import { firebaseAuth } from '../utils/firebase.js';
+
 const mapStateToProps = (state) => ({
   routing: state.routing,
   user: state.user,

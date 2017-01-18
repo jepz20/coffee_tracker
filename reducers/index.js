@@ -5,6 +5,7 @@ import user from './user.js';
 import login from './login.js';
 import header from './header.js';
 import news from './news.js';
+import map from './map.js';
 import newsLanding from './newsLanding.js';
 import routeHistory from './routeHistory.js';
 
@@ -15,6 +16,7 @@ export default combineReducers({
   login,
   header,
   news,
+  map,
   newsLanding,
   routeHistory,
 });
