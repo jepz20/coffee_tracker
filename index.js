@@ -16,6 +16,7 @@ import Map from './components/Map.js';
 import News from './components/News.js';
 import Authentication from './components/Authentication.js';
 import NewsLanding from './components/NewsLanding.js';
+import MapList from './components/MapList.js';
 import Error404 from './components/404.js';
 
 injectTapEventPlugin();
@@ -45,12 +46,14 @@ render(
         <Route component={ App }>
           <Route component={ Main }>
             <Route path='/' component={ News } />
-            <Route path='/map' component={ Map } />
+            <Route path='/map' component={ MapList } />
+            <Route path='/map/:id' component={ Map } />
             <Route path='/news' component={ News } />
             <Route path='/news/:id' component={ NewsLanding } />
           </Route>
           <Route path='/login' component={ Authentication } />
           <Route path="*" component={Error404} status={404}/>
+          <Route path="/404" component={Error404} status={404}/>
         </Route>
       </Router>
     </MuiThemeProvider>

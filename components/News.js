@@ -66,10 +66,16 @@ const NewsCard = props => {
           overlay={
             <CardTitle title={newsDetail.title}
               subtitle={ subtitle }
+              subtitleStyle= { { color: '#fff' } }
             />
           }
           >
-            <img src={ newsDetail.image} />
+            <img src={ newsDetail.image}
+              alt={ newsDetail.imageDescription
+                ? newsDetail.imageDescription
+                : `${newsDetail.title} Main Image`
+              }
+            />
         </CardMedia>
         <CardText style={ { fontSize: 16 } }>
           { description }

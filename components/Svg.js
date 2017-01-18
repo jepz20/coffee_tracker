@@ -1,15 +1,19 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import * as actions from '../actions';
 import Polyline from './Polyline';
 import toPoints from '../utils/toPoints';
-import uuid from 'uuid';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
+import dateformat from 'dateformat';
 
 const mapStateToProps = state => ({
   areaDetail: state.areaDetail,
 });
 
 class Svg extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     const { coordinates, bounds, zoom, possibleColors } = this.props;
     const { coords, options } = coordinates;
@@ -20,17 +24,18 @@ class Svg extends React.Component {
 
     const ptCorner = toPoints(bounds[0], bounds[1], zoom);
 
-    const drawChildCoords = (coords, index=0) => {
-      if (index !== 0) {
+    const drawChildCoords = (coordsToDraw, index=-1) => {
+      if (index > 0) {
         realOptions = { ...realOptions, fill: possibleColors[index - 1] };
       }
 
-      if (coords[0].hasOwnProperty('lat') && coords[0].hasOwnProperty('lng')) {
+      if (index != -1) {
         return <Polyline
-          coords={coords}
+          coords={coordsToDraw.coords}
           ptCorner={ptCorner}
           zoom={zoom}
-          key={uuid.v4()}
+          id={coordsToDraw.id}
+          key={coordsToDraw.id}
           options={realOptions} />;
       }
 
@@ -40,29 +45,62 @@ class Svg extends React.Component {
       return child;
     };
 
-    const K_SIZE = 80;
+    const K_SIZE = 180;
     const markerStyle = {
       position: 'absolute',
       width: K_SIZE,
-      height: K_SIZE,
-      left: K_SIZE / 2,
-      top: K_SIZE / 2,
+      height: 140,
+      left: K_SIZE / 6,
+      top: K_SIZE / 6,
       lineHeight: 1.7,
-      backgroundColor: 'yellow',
-      textAlign: 'center',
+      background: '#fff',
+      color: 'rgba(0, 0, 0, 0.870588)',
+      textAlign: 'left',
       fontSize: 12,
       padding: 4,
       cursor: 'pointer',
+      zIndex: '1000000',
     };
+    const { areaDetail } = this.props;
+
+    const Detail =
+        <div style={markerStyle} className="hint__content">
+          <h3>{ areaDetail.info.name} </h3>
+          <div>Total Expenses: <b> ${ areaDetail.info.totalBudget} </b></div>
+          <div>Total Plants: <b> { areaDetail.info.totalPlants} </b></div>
+          <div>Plantation Date: <b> {
+              areaDetail.info.dateItWasPlanted
+                ? dateformat(new Date(areaDetail.info.dateItWasPlanted * 1000), 'dd-mm-yyyy')
+                : ''
+            }
+            </b>
+          </div>
+          <div>Last Fertilization: <b> {
+              areaDetail.info.dateItWasPlanted
+                ? dateformat(new Date(areaDetail.info.lastFertilized * 1000), 'dd-mm-yyyy')
+                : ''
+            }
+            </b>
+          </div>
+          <div>Last Pest Control: <b> {
+              areaDetail.info.dateItWasPlanted
+                ? dateformat(new Date(areaDetail.info.lastPestControl * 1000), 'dd-mm-yyyy')
+                : ''
+            }
+            </b>
+          </div>
+        </div>;
+
     return (
       <div>
         <svg
           height={this.props.height}
           width={this.props.width}
+          onClick={this.props.hideAreaDetail}
         >
           {drawChildCoords(coords)}
         </svg>
-        <div style= { markerStyle } className="hint__content">Hola</div>
+        { areaDetail.show && Detail }
       </div>
     );
   }

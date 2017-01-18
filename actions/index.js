@@ -9,6 +9,48 @@ export const boundsChanged = (center, zoom, bounds) => ({
   bounds,
 });
 
+export const hideAreaDetail = () => ({
+  type: 'HIDE_AREA_DETAIL',
+});
+
+export const setActionDetail = info => ({
+  type: 'SET_ACTION_DETAIL',
+  info,
+});
+
+export const setMapDetail = (mapDetails) => ({
+  type: 'SET_MAP_DETAIL',
+  mapDetails,
+});
+
+export const fetchMapDetailById = (id) => {
+  const newsRef =  firebaseDb.ref(`/maps/${id}`);
+  return (
+    dispatch => {
+      newsRef.on('value', snapshot=> {
+        dispatch({
+          type: 'SET_MAP_DETAIL',
+          mapDetails: snapshot.val(),
+        });
+      });
+    }
+  );
+};
+
+export const fetchAllMaps = (id) => {
+  const newsRef =  firebaseDb.ref(`/maps`);
+  return (
+    dispatch => {
+      newsRef.on('value', snapshot=> {
+        dispatch({
+          type: 'SET_ALL_MAPS',
+          allMaps: snapshot.val(),
+        });
+      });
+    }
+  );
+};
+
 //NEWS ACTIONS
 export const fetchFirstNews = (limitTo=5) => {
   const newsRef =  firebaseDb.ref(`/news`);
@@ -68,7 +110,7 @@ export const setResetLastQuery = () => ({
   type: 'SET_RESET_LAST_QUERY',
 });
 
-export const setNewsFeed = newsFeed => ({
+export const setNewsFeed = (newsItem, newsKey) => ({
   type: 'SET_NEWS_FEED',
   newsItem,
   newsKey,

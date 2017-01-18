@@ -1,16 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import uuid from 'uuid';
-import { hashHistory } from 'react-router';
-import { Tabs, Tab } from 'material-ui/Tabs';
-import IconButton from 'material-ui/IconButton';
-import FontIcon from 'material-ui/FontIcon';
 import GoogleMap from 'google-map-react';
+import Loader from '../components/Loader';
 import Svg from './Svg';
+import { hashHistory } from 'react-router';
 
 const mapStateToProps = (state) => ({
-  routing: state.routing,
   map: state.map,
 });
 
@@ -19,37 +15,16 @@ class Map extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { googleApiLoaded: false, bounds: [] };
-    this._onChildClick = this._onChildClick.bind(this);
-    this._onChildMouseEnter = this._onChildMouseEnter.bind(this);
-    this._onChildMouseLeave = this._onChildMouseLeave.bind(this);
+    this.state = { googleApiLoaded: false };
     this.drawSvg = this.drawSvg.bind(this);
     this.onGoogleApiLoaded = this.onGoogleApiLoaded.bind(this);
     this.onBoundsChange = this.onBoundsChange.bind(this);
   }
 
   componentDidMount() {
-    const { fetchGeolocationDetail } = this.props;
+    const { fetchMapDetailById, params } = this.props;
 
-    // fetchGeolocationDetail();
-  }
-
-  _onChildClick(key, childProps) {
-    const { selectedKeyChange, centerChange } = this.props;
-    console.log(key, 'onChildClicko');
-    // centerChange([childProps.lat, childProps.lng]);
-  }
-
-  _onChildMouseEnter(key) {
-    const { selectedKeyChange } = this.props;
-    console.log(key, 'onChildMouseEnter');
-    // selectedKeyChange(key);
-  }
-
-  _onChildMouseLeave(key) {
-    console.log(key, 'onChildMouseLeave');
-    const { selectedKeyChange } = this.props;
-    // selectedKeyChange(key);
+    fetchMapDetailById(params.id);
   }
 
   onBoundsChange(center, zoom, bounds, marginBounds) {
@@ -58,9 +33,8 @@ class Map extends React.Component {
   };
 
   drawSvg(ref) {
-    const { googleApiLoaded } = this.state;
     const { bounds } = this.props.map;
-    if (bounds.length == 0)
+    if (!this.state.googleApiLoaded || bounds.length == 0)
       return null;
     else {
       const { mapcontainer } = this.refs;
@@ -69,9 +43,8 @@ class Map extends React.Component {
       return (
         <Svg
           lat={ bounds[0] }
-          key={uuid.v4()}
           lng={ bounds[1] }
-          coordinates={ map.coordinates }
+          coordinates={ { ...map.coordinates, options: map.options } }
           bounds={ bounds }
           zoom={ map.zoom }
           possibleColors={ map.possibleColors}
@@ -86,10 +59,42 @@ class Map extends React.Component {
     this.setState({
       googleApiLoaded: true,
     });
+
+    const bounds = new maps.LatLngBounds();
+
+    const extendBounds = (lat, lng) => {
+      const latLng = new maps.LatLng(lat, lng);
+      bounds.extend(latLng);
+    };
+
+    const extendCoordsBounds = coords => {
+      coords.forEach(coord => {
+        if (coord.hasOwnProperty('lat') && coord.hasOwnProperty('lng')) {
+          extendBounds(coord.lat, coord.lng);
+        } else if (Array.isArray(coord)) {
+          extendCoordsBounds(coord);
+        }
+      });
+    };
+
+    const allCoords = this.props.map.coordinates.coords.map(coord => coord.coords);
+    extendCoordsBounds(allCoords);
+
+    map.fitBounds(bounds);
   }
 
   render() {
     const { map } = this.props;
+
+    if (!map.loaded) {
+      return <Loader />;
+    };
+
+    if (!map.hasData) {
+      hashHistory.push('/404');
+      return null;
+    }
+
     const createMapOptions = maps => (
       {
         navigationControl: false,
@@ -120,11 +125,9 @@ class Map extends React.Component {
           }}
          options={createMapOptions}
          center={map.center}
-         onChildClick={this._onChildClick}
-         onChildMouseEnter={this._onChildMouseEnter}
-         onChildMouseLeave={this._onChildMouseLeave}
+         defaultCenter={map.defaultCenter}
          onBoundsChange={this.onBoundsChange}
-        //  onGoogleApiLoaded={this.onGoogleApiLoaded}
+         onGoogleApiLoaded={this.onGoogleApiLoaded.bind(this)}
          yesIWantToUseGoogleMapApiInternals
          defaultZoom={map.defaultZoom}>
            {this.drawSvg('mapcontainer')}

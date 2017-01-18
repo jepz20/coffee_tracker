@@ -32,7 +32,6 @@ export default function(state=defaultState, action) {
         loading: false, firstLoad: false,
       };
     case 'SET_RESET_LAST_QUERY':
-      console.log('CALLING WAS NEEDED');
       return { ...state, resetLastQuery: true, loading: true };
     default:
       return state;

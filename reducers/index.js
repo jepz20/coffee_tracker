@@ -8,6 +8,8 @@ import news from './news.js';
 import map from './map.js';
 import newsLanding from './newsLanding.js';
 import routeHistory from './routeHistory.js';
+import areaDetail from './areaDetail.js';
+import mapsList from './mapsList.js';
 
 export default combineReducers({
   routing: routerReducer,
@@ -17,6 +19,8 @@ export default combineReducers({
   header,
   news,
   map,
+  mapsList,
   newsLanding,
   routeHistory,
+  areaDetail,
 });

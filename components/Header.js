@@ -72,16 +72,25 @@ class Header extends React.Component {
         <AppBar
           title= { <Link to="/" className="header__title">{ header.title }</Link>  }
           onLeftIconButtonTouchTap = { toggleDrawerOpen }
+          iconElementLeft={
+            <IconButton
+              iconStyle={ icons.white }
+              iconClassName='fa fa-bars'
+              aria-label="Toggle Menu"
+            />
+          }
           iconElementRight = {
             <div>
               <IconButton
                 iconStyle={ icons.white }
                 iconClassName='fa fa-sign-out'
                 tooltip="logout"
+                aria-label="logout"
                 onTouchTap={ logout }
               />
               <IconButton
                 iconStyle={ icons.white }
+                aria-label="go to github"
                 style={{ paddingTop: 0 }}
                 iconClassName='fa fa-github'
                 href={ header.githubLink }
@@ -97,6 +106,7 @@ class Header extends React.Component {
         >
           <MenuItem
             tabIndex={ drawerTabIndex }
+            aria-hidden={!header.drawerOpen}
             id="drawerItemHeader"
             onTouchTap={ () => goToRoute('/') }
           >
@@ -106,6 +116,7 @@ class Header extends React.Component {
             header.menuItems.map(item => (
               <MenuItem
                 tabIndex={ drawerTabIndex }
+                aria-hidden={!header.drawerOpen}
                 leftIcon={ <FontIcon style= { primaryColor } className={item.icon} /> }
                 key={item.index}
                 id={`drawerItem${item.index}`}
