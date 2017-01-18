@@ -10,24 +10,23 @@ import dateformat from 'dateformat';
 
 const mapStateToProps = state => ({
   routing: state.routing,
-  mapsList: state.mapsList,
+  propertiesList: state.propertiesList,
 });
 
-class MapList extends React.Component {
+class PropertiesList extends React.Component {
   constructor(props) {
     super(props);
   }
 
   componentWillMount() {
-    const { fetchAllMaps } = this.props;
-    fetchAllMaps();
+    const { fetchAllProperties } = this.props;
+    fetchAllProperties();
   }
 
   render() {
-    const { mapsList } = this.props;
-    const { allMaps, loading } = mapsList;
-
-    if (!mapsList.loaded) {
+    const { propertiesList } = this.props;
+    const { allProperties, loading } = propertiesList;
+    if (loading) {
       return <Loader />;
     };
 
@@ -38,7 +37,7 @@ class MapList extends React.Component {
     };
 
     const goToMapDetail = id => {
-      hashHistory.push(`map/${id}`);
+      hashHistory.push(`properties/${id}/map`);
     };
 
     return (
@@ -46,7 +45,7 @@ class MapList extends React.Component {
         <List>
           <h3>Properties</h3>
           {
-            allMaps.map((map, index) => (
+            allProperties.map((map, index) => (
                 <div key={ index }>
                   <ListItem
                     role="button"
@@ -62,7 +61,7 @@ class MapList extends React.Component {
                             )
                             : '' }
                         </span> --
-                        { map.description}
+                        { ' ' + map.description}
                       </p>
                     }
                     secondaryTextLines={2}
@@ -77,5 +76,5 @@ class MapList extends React.Component {
   }
 };
 
-MapList = connect(mapStateToProps, actions)(MapList);
-export default MapList;
+PropertiesList = connect(mapStateToProps, actions)(PropertiesList);
+export default PropertiesList;

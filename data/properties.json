@@ -1,0 +1,155 @@
+{
+  "0": {
+    "map": {
+      "center" : [ 13.936026999999999,
+        -87.343609000000001
+      ],
+      "coordinates" : {
+        "coords" : [
+          { "coords" :
+            [ { "lat" : 13.937215,
+                "lng" : -87.342060000000004
+              },
+              { "lat" : 13.933536,
+                "lng" : -87.342355999999995
+              },
+              { "lat" : 13.933452000000001,
+                "lng" : -87.343704000000002
+              },
+              { "lat" : 13.934103,
+                "lng" : -87.344561999999996
+              },
+              { "lat" : 13.935179,
+                "lng" : -87.344723999999999
+              },
+              { "lat" : 13.935826,
+                "lng" : -87.346451999999999
+              },
+              { "lat" : 13.938179999999999,
+                "lng" : -87.344695000000002
+              },
+              { "lat" : 13.937215,
+                "lng" : -87.342060000000004
+              }
+            ],
+        "id" : 0,
+        "info" : { "dateItWasPlanted" : 1481169605,
+          "lastFertilized" : 1481129605,
+          "lastPestControl" : 1481169605,
+          "name" : "Jerico Finca Gualo",
+          "totalBudget" : 345541,
+          "totalPlants" : 10000
+        }
+      },
+      { "coords" : [ { "lat" : 13.935813,
+        "lng" : -87.343166999999994
+      },
+      { "lat" : 13.935603,
+        "lng" : -87.342400999999995
+      },
+      { "lat" : 13.934576,
+        "lng" : -87.342602999999997
+      },
+      { "lat" : 13.934691000000001,
+        "lng" : -87.343389000000002
+      },
+      { "lat" : 13.935813,
+        "lng" : -87.343166999999994
+      }
+      ],
+      "id" : 1,
+      "info" : { "dateItWasPlanted" : 1481169605,
+        "lastFertilized" : 1481129605,
+        "lastPestControl" : 1481169605,
+        "name" : "Cafetal Tita",
+        "totalBudget" : 65300,
+        "totalPlants" : 3000
+      }
+      },
+    { "coords" : [ { "lat" : 13.934502999999999,
+      "lng" : -87.343248000000003
+    },
+    { "lat" : 13.93355,
+      "lng" : -87.343462000000002
+    },
+    { "lat" : 13.933871999999999,
+      "lng" : -87.344357000000002
+    },
+    { "lat" : 13.934642,
+      "lng" : -87.344673999999998
+    },
+    { "lat" : 13.935387,
+      "lng" : -87.344112999999993
+    },
+    { "lat" : 13.934502999999999,
+      "lng" : -87.343248000000003
+    }
+    ],
+    "id" : 2,
+    "info" : { "dateItWasPlanted" : 1481169605,
+      "lastFertilized" : 1481129605,
+      "lastPestControl" : 1481169605,
+      "name" : "Cafetal Mario",
+      "totalBudget" : 5300,
+      "totalPlants" : 2000
+    }
+    },
+    { "coords" : [ { "lat" : 13.935231999999999,
+      "lng" : -87.344804999999994
+    },
+    { "lat" : 13.935798,
+      "lng" : -87.346388000000005
+    },
+    { "lat" : 13.936474,
+      "lng" : -87.345701000000005
+    },
+    { "lat" : 13.935862,
+      "lng" : -87.344359999999995
+    },
+    { "lat" : 13.935231999999999,
+      "lng" : -87.344804999999994
+    }
+    ],
+    "id" : 3,
+    "info" : { "dateItWasPlanted" : 1481169605,
+      "lastFertilized" : 1481129605,
+      "lastPestControl" : 1481169605,
+      "name" : "Cafetal Gualo",
+      "totalBudget" : 55000,
+      "totalPlants" : 3000
+    }
+    },
+    { "coords" : [ { "lat" : 13.935841,
+      "lng" : -87.342624000000001
+    },
+    { "lat" : 13.936897999999999,
+      "lng" : -87.345495999999997
+    },
+    { "lat" : 13.938060999999999,
+      "lng" : -87.344763
+    },
+    { "lat" : 13.937028,
+      "lng" : -87.342305999999994
+    },
+    { "lat" : 13.935841,
+      "lng" : -87.342624000000001
+    }
+    ],
+    "id" : 4,
+    "info" : { "dateItWasPlanted" : 1481169605,
+      "lastFertilized" : 1481129605,
+      "lastPestControl" : 1481169605,
+      "name" : "Cafetal Griselda",
+      "totalBudget" : 155082,
+      "totalPlants" : 6000
+    }
+    }
+    ] },
+    "zoom" : 17
+  },
+    "id": 0,
+    "name": "Finca Jerico",
+    "description": "Finca Ubicada en el municipio de Ojojona en la aldea de Guersine, zona de alto prestigio para la siembra de cafe",
+    "dateItWasPlanted" : 1481169605,
+  }
+}

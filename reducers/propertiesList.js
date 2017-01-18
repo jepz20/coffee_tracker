@@ -1,13 +1,13 @@
 const defaultState = {
-  loaded: false,
+  loading: true,
   hasData: true,
 };
 
 export default function(state=defaultState, action) {
-  const { allMaps } = action;
+  const { allProperties } = action;
   switch (action.type) {
-    case 'SET_ALL_MAPS':
-      return { ...state, allMaps, loaded: true };
+    case 'SET_ALL_PROPERTIES':
+      return { ...state, allProperties, loading: false };
     default:
       return state;
   }

@@ -1,6 +1,18 @@
 import * as api from '../api';
 import { firebaseDb } from '../utils/firebase.js';
 
+//PROPERTIES ACTIONS
+
+export const setActiveTab = activeTab => ({
+  type: 'SET_ACTIVE_TAB',
+  activeTab,
+});
+
+export const setActiveTabFromRoute = route => ({
+  type: 'SET_ACTIVE_TAB_FROM_ROUTE',
+  route,
+});
+
 //MAP ACTIONS
 export const boundsChanged = (center, zoom, bounds) => ({
   type: 'BOUNDS_CHANGED',
@@ -24,7 +36,7 @@ export const setMapDetail = (mapDetails) => ({
 });
 
 export const fetchMapDetailById = (id) => {
-  const newsRef =  firebaseDb.ref(`/maps/${id}`);
+  const newsRef =  firebaseDb.ref(`/properties/${id}/map`);
   return (
     dispatch => {
       newsRef.on('value', snapshot=> {
@@ -37,14 +49,14 @@ export const fetchMapDetailById = (id) => {
   );
 };
 
-export const fetchAllMaps = (id) => {
-  const newsRef =  firebaseDb.ref(`/maps`);
+export const fetchAllProperties = (id) => {
+  const newsRef =  firebaseDb.ref(`/properties`);
   return (
     dispatch => {
       newsRef.on('value', snapshot=> {
         dispatch({
-          type: 'SET_ALL_MAPS',
-          allMaps: snapshot.val(),
+          type: 'SET_ALL_PROPERTIES',
+          allProperties: snapshot.val(),
         });
       });
     }

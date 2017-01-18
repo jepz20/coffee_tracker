@@ -51,25 +51,10 @@ class Main extends React.Component {
           index: 0,
           route: '/news',
         }, {
-          label: 'Map',
-          icon: 'fa fa-map',
+          label: 'Properties',
+          icon: 'fa fa-home',
           index: 1,
-          route: '/map',
-        }, {
-          label: 'Budget',
-          icon: 'fa fa-money',
-          index: 2,
-          route: '/budget',
-        }, {
-          label: 'Events',
-          icon: 'fa fa-clock-o',
-          index: 3,
-          route: '/events',
-        }, {
-          label: 'Graphs',
-          icon: 'fa fa-bar-chart',
-          index: 4,
-          route: '/graphs',
+          route: '/properties',
         },
       ],
     };

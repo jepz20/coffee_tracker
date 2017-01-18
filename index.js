@@ -10,14 +10,14 @@ import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import Main from './components/Main.js';
-import Content from './components/Content.js';
-import Map from './components/Map.js';
-import News from './components/News.js';
-import Authentication from './components/Authentication.js';
-import NewsLanding from './components/NewsLanding.js';
-import MapList from './components/MapList.js';
-import Error404 from './components/404.js';
+import Main from './components/Main';
+import Content from './components/Content';
+import News from './components/News';
+import Authentication from './components/Authentication';
+import NewsLanding from './components/NewsLanding';
+import PropertiesList from './components/PropertiesList';
+import PropertiesActions from './components/PropertiesActions';
+import Error404 from './components/404';
 
 injectTapEventPlugin();
 
@@ -28,7 +28,7 @@ const muiTheme = getMuiTheme({
     accent2Color: brown700,
   },
   appBar: {
-    height: 50,
+    height: 48,
   },
 });
 
@@ -46,8 +46,9 @@ render(
         <Route component={ App }>
           <Route component={ Main }>
             <Route path='/' component={ News } />
-            <Route path='/map' component={ MapList } />
-            <Route path='/map/:id' component={ Map } />
+            <Route path='/properties' component={ PropertiesList } />
+            <Route path='/properties/:id' component={ PropertiesActions } />
+            <Route path='/properties/:id/:action' component={ PropertiesActions } />
             <Route path='/news' component={ News } />
             <Route path='/news/:id' component={ NewsLanding } />
           </Route>

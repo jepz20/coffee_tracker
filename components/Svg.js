@@ -49,7 +49,7 @@ class Svg extends React.Component {
     const markerStyle = {
       position: 'absolute',
       width: K_SIZE,
-      height: 140,
+      height: 150,
       left: K_SIZE / 6,
       top: K_SIZE / 6,
       lineHeight: 1.7,
