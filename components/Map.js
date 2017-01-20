@@ -23,8 +23,7 @@ class Map extends React.Component {
 
   componentDidMount() {
     const { fetchMapDetailById, params } = this.props;
-    console.log(params, 'paramsmap');
-    fetchMapDetailById(params.id);
+    fetchMapDetailById(params.propertyId);
   }
 
   onBoundsChange(center, zoom, bounds, marginBounds) {

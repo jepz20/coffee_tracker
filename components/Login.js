@@ -44,43 +44,40 @@ class Login extends React.Component {
   render() {
     const { loginError } = this.props.login;
     return (
-      <main>
-        <div className="login--form">
-          <Paper style={authStyles.form} zDepth={2}>
-            <div className="login--form__brand">
-              <h2>
-                <FontIcon style={authStyles.logoIcon} className="fa fa-coffee" />
-                CoffeeT
-              </h2>
-            </div>
-            <div className="login--form__title">
-              <h2>Log in To Your Account</h2>
-            </div>
-            <div className="login--form__inputs">
-              <LoginEmailForm
-                doSubmit={this.onLoginButton}
-                loginError= { loginError }
-              />
-              <Divider style={ authStyles.divider }/>
-              <br />
-              <div>or</div>
-              <PrimaryButton
-                label="Signin With Google"
-                icon={<FontIcon style={ authStyles.icon } className="fa fa-google" />}
-                onClick = { this.onSignInWithGoogleButton }
-              />
-              <Divider style={ authStyles.divider }/>
-              <br/>
-              <h4> New to CoffeeT?</h4>
-              <SecondaryButton
-                label="Create your account"
-                onClick = {this.onCreateAccountButton }
-              />
-            </div>
-          </Paper>
-        </div>
-      </main>
-
+      <div className="login--form">
+        <Paper style={authStyles.form} zDepth={2}>
+          <div className="login--form__brand">
+            <h2>
+              <FontIcon style={authStyles.logoIcon} className="fa fa-coffee" />
+              CoffeeT
+            </h2>
+          </div>
+          <div className="login--form__title">
+            <h2>Log in To Your Account</h2>
+          </div>
+          <div className="login--form__inputs">
+            <LoginEmailForm
+              doSubmit={this.onLoginButton}
+              loginError= { loginError }
+            />
+            <Divider style={ authStyles.divider }/>
+            <br />
+            <div>or</div>
+            <PrimaryButton
+              label="Signin With Google"
+              icon={<FontIcon style={ authStyles.icon } className="fa fa-google" />}
+              onClick = { this.onSignInWithGoogleButton }
+            />
+            <Divider style={ authStyles.divider }/>
+            <br/>
+            <h4> New to CoffeeT?</h4>
+            <SecondaryButton
+              label="Create your account"
+              onClick = {this.onCreateAccountButton }
+            />
+          </div>
+        </Paper>
+      </div>
     );
   }
 };

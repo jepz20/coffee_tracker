@@ -30,16 +30,16 @@ export const setActionDetail = info => ({
   info,
 });
 
-export const setMapDetail = (mapDetails) => ({
+export const setMapDetail = mapDetails => ({
   type: 'SET_MAP_DETAIL',
   mapDetails,
 });
 
-export const fetchMapDetailById = (id) => {
-  const newsRef =  firebaseDb.ref(`/properties/${id}/map`);
+export const fetchMapDetailById = id => {
+  const mapRef =  firebaseDb.ref(`/properties/${id}/map`);
   return (
     dispatch => {
-      newsRef.on('value', snapshot=> {
+      mapRef.on('value', snapshot => {
         dispatch({
           type: 'SET_MAP_DETAIL',
           mapDetails: snapshot.val(),
@@ -49,15 +49,32 @@ export const fetchMapDetailById = (id) => {
   );
 };
 
-export const fetchAllProperties = (id) => {
-  const newsRef =  firebaseDb.ref(`/properties`);
+//PROPERTIES
+export const fetchAllProperties = id => {
+  const propertiesRef =  firebaseDb.ref(`/properties`);
   return (
     dispatch => {
-      newsRef.on('value', snapshot=> {
+      propertiesRef.on('value', snapshot => {
         dispatch({
           type: 'SET_ALL_PROPERTIES',
           allProperties: snapshot.val(),
         });
+      });
+    }
+  );
+};
+
+export const setPropertyDetail = propertyDetail => ({
+  type: 'SET_PROPERTY_DETAIL',
+  propertyDetail,
+});
+
+export const fetchPropertyById = id => {
+  const propertyRef = firebaseDb.ref(`/properties/${id}`);
+  return (
+    dispatch => {
+      propertyRef.on('value', snapshot => {
+        dispatch(setPropertyDetail(snapshot.val()));
       });
     }
   );
@@ -99,11 +116,11 @@ export const fetchMoreNews = (lastQueryKey, limitTo=5) => {
   );
 };
 
-export const fetchNewsById = (id) => {
+export const fetchNewsById = id => {
   const newsRef =  firebaseDb.ref(`/news/${id}`);
   return (
     dispatch => {
-      newsRef.on('value', snapshot=> {
+      newsRef.on('value', snapshot => {
         dispatch({
           type: 'RECEIVE_NEWS_LANDING_DETAIL',
           newsDetail: snapshot.val(),

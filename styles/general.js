@@ -12,3 +12,10 @@ export const primaryColor = {
 export const secondaryColor = {
   color: '#4E342E',
 };
+
+export const forms = {
+  height: '100%',
+  width: '100%',
+  textAlign: 'center',
+  display: 'inline-block',
+};

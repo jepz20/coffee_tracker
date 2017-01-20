@@ -20,11 +20,13 @@ class BudgetList extends React.Component {
 
   componentWillMount() {
     const { fetchBudgetListByPropertyId } = this.props;
+
     // fetchBudgetListByPropertyId();
   }
 
   render() {
     const { budgetList } = this.props;
+
     // const { allBudgets, loading } = budgetList;
 
     if (false) {
@@ -33,7 +35,9 @@ class BudgetList extends React.Component {
 
     return (
       <div>
-        <button>Add Expense</button>
+        <Link to={`/properties/${this.props.params.propertyId}/budget/addexpenses`}>
+          Add Expense
+        </Link>
       </div>
   );
   }

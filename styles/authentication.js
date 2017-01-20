@@ -27,7 +27,7 @@ const styles = {
       fontSize: '20px',
       verticalAlign: 'middle',
       textTransform: 'capitalize',
-      color: '#5D4037',
+      color: '#fff',
     },
     root: {
       width: '100%',

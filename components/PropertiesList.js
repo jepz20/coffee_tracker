@@ -37,6 +37,8 @@ class PropertiesList extends React.Component {
     };
 
     const goToMapDetail = id => {
+      const { setPropertyDetail, propertiesList } = this.props;
+      setPropertyDetail(propertiesList.allProperties[id]);
       hashHistory.push(`properties/${id}/map`);
     };
 

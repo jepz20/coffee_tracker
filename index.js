@@ -15,6 +15,7 @@ import Content from './components/Content';
 import News from './components/News';
 import Authentication from './components/Authentication';
 import NewsLanding from './components/NewsLanding';
+import AddBudget from './components/AddBudget';
 import PropertiesList from './components/PropertiesList';
 import PropertiesActions from './components/PropertiesActions';
 import Error404 from './components/404';
@@ -24,8 +25,7 @@ injectTapEventPlugin();
 const muiTheme = getMuiTheme({
   palette: {
     primary1Color: '#6CC8C1',
-    accent1Color: grey50,
-    accent2Color: brown700,
+    accent1Color: brown700,
   },
   appBar: {
     height: 48,
@@ -46,11 +46,13 @@ render(
         <Route component={ App }>
           <Route component={ Main }>
             <Route path='/' component={ News } />
-            <Route path='/properties' component={ PropertiesList } />
-            <Route path='/properties/:id' component={ PropertiesActions } />
-            <Route path='/properties/:id/:action' component={ PropertiesActions } />
+            <Route path='/properties/:propertyId/budget/addexpenses' component={ AddBudget } />
+            <Route path='/properties' component={ PropertiesList }>
+            </Route>
+            <Route path='/properties/:propertyId' component={ PropertiesActions } />
+            <Route path='/properties/:propertyId/:action' component={ PropertiesActions } />
             <Route path='/news' component={ News } />
-            <Route path='/news/:id' component={ NewsLanding } />
+            <Route path='/news/:newsId' component={ NewsLanding } />
           </Route>
           <Route path='/login' component={ Authentication } />
           <Route path="*" component={Error404} status={404}/>

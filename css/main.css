@@ -7,6 +7,12 @@
     flex-direction: column
 }
 
+ul {
+  list-style-type: none;
+  width: 100%;
+  padding: 0;
+}
+
 main {
   width: 100%;
   margin-top: 58px;
@@ -19,6 +25,17 @@ header {
   width: 100%;
 }
 
+.inline--inputs__1 {
+  flex: 1
+}
+
+.inline--inputs__2 {
+  flex: 2
+}
+
+.inline--inputs {
+  display: block;
+}
 .tab-label {
   display: none
 }
@@ -96,6 +113,10 @@ header {
   width: calc(100% - 40px);
 }
 
+.general--form__inputs {
+  width: calc(100% - 40px);
+}
+
 .form--error {
   position: relative;
   margin-top: 15px;
@@ -114,30 +135,20 @@ header {
 }
 
 @media only screen and (min-width: 550px) {
-  main, .map-container {
-    width: 550px;
+  .authentication--container {
     margin-left: auto;
     margin-right: auto;
-
+    width: 550px;
   }
 }
 
 @media only screen and (min-width: 768px) {
-  main, .map-container {
-    margin-left: auto;
-    margin-right: auto;
-    width: 720px;
+  .inline--inputs {
+    display: flex;
   }
 
 }
 
-@media only screen and (min-width: 991px) {
-  main, .map-container {
-    margin-left: auto;
-    margin-right: auto;
-    width: 940px;
-  }
-}
 
 @media only screen and (min-width: 1200px) {
   main, .map-container {

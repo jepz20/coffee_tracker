@@ -18,7 +18,7 @@ class NewsLanding extends React.Component {
 
   componentWillMount() {
     const { fetchNewsById, params } = this.props;
-    fetchNewsById(params.id);
+    fetchNewsById(params.newsId);
   }
 
   render() {

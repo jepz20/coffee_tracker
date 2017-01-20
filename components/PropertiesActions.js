@@ -40,7 +40,7 @@ class PropertiesActions extends React.Component {
     const { setActiveTab, propertiesActions, params } = this.props;
     if (tab.index !== propertiesActions.activeTab) {
       setActiveTab(tab.index);
-      hashHistory.push(`properties/${params.id}/${tab.route}`);
+      hashHistory.push(`properties/${params.propertyId}/${tab.route}`);
     }
   }
 
@@ -57,7 +57,6 @@ class PropertiesActions extends React.Component {
 
     // Set Child base on route
     let child;
-    console.log(params, 'params');
     switch (params.action) {
       case 'map':
         child = <Map/>;
@@ -79,7 +78,7 @@ class PropertiesActions extends React.Component {
                 key={ tab.index }
                 value = { tab.index }
                 onClick   = {() => this.handleTabClick(tab)}
-                icon={<FontIcon className={tab.icon} />}
+                icon={<FontIcon className={tab.icon}/>}
                 label={<div className='tab-label'>{tab.label}</div>}
                 >
                 </Tab>

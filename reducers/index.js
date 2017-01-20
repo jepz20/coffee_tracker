@@ -11,6 +11,7 @@ import routeHistory from './routeHistory';
 import areaDetail from './areaDetail';
 import propertiesList from './propertiesList';
 import propertiesActions from './propertiesActions';
+import property from './property';
 
 export default combineReducers({
   routing: routerReducer,
@@ -25,4 +26,5 @@ export default combineReducers({
   routeHistory,
   areaDetail,
   propertiesActions,
+  property,
 });

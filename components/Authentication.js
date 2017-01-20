@@ -46,15 +46,15 @@ class Authentication extends React.Component {
       return <Loader />;
     }
 
-    if (login.showLogin) {
-      return (
-        <Login />
-      );
-    } else {
-      return (
-        <Register />
-      );
-    }
+    return (
+      <main className="authentication--container">
+        {
+          login.showLogin
+          ? <Login />
+          : <Register />
+        }
+      </main>
+    );
   }
 }
 

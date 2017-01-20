@@ -151,5 +151,23 @@
     "name": "Finca Jerico",
     "description": "Finca Ubicada en el municipio de Ojojona en la aldea de Guersine, zona de alto prestigio para la siembra de cafe",
     "dateItWasPlanted" : 1481169605,
+    "subProperties": {
+      "1a" : {
+        "name": "Cafetal Tita",
+        "id": 1
+      },
+      "2b": {
+        "name": "Cafetal Mario",
+        "id": 2
+      },
+      "3c": {
+        "name": "Cafetal Gualo",
+        "id": 3
+      },
+      "4d": {
+        "name": "Cafetal Griselda",
+        "id": 4
+      }
+    }
   }
 }
