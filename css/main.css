@@ -113,6 +113,48 @@ header {
   width: calc(100% - 40px);
 }
 
+.md-cell {
+  width: 100%;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 9px;
+  height: 80px;
+}
+
+.md-floating-label {
+  font-size: 18.75px;
+  left: 0px;
+  top: 5px;
+
+  font-weight: 400;
+}
+
+.md-floating-label--floating {
+  transform: none;
+}
+.md-floating-label--inactive {
+  transform: none;;
+}
+
+.md-floating-label {
+  color: #5D4037;
+}
+.md-text--theme-primary, .md-floating-label--active {
+  color: #6CC8C1;
+}
+
+.md-divider--text-field:after {
+  background: #6CC8C1;
+}
+
+.md-icon-text {
+  font-size: 20px;
+}
+
+/*.md-divider {
+  height: 2px;
+}*/
+
 .general--form__inputs {
   width: calc(100% - 40px);
 }
@@ -145,6 +187,10 @@ header {
 @media only screen and (min-width: 768px) {
   .inline--inputs {
     display: flex;
+  }
+
+  .md-cell {
+    flex: 1;
   }
 
 }

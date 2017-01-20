@@ -144,7 +144,7 @@
       "totalPlants" : 6000
     }
     }
-    ] },
+  ] },
     "zoom" : 17
   },
     "id": 0,
@@ -152,21 +152,25 @@
     "description": "Finca Ubicada en el municipio de Ojojona en la aldea de Guersine, zona de alto prestigio para la siembra de cafe",
     "dateItWasPlanted" : 1481169605,
     "subProperties": {
-      "1a" : {
-        "name": "Cafetal Tita",
+      "1" : {
+        "name": "General",
         "id": 1
       },
-      "2b": {
-        "name": "Cafetal Mario",
+      "2" : {
+        "name": "Cafetal Tita",
         "id": 2
       },
-      "3c": {
-        "name": "Cafetal Gualo",
+      "3": {
+        "name": "Cafetal Mario",
         "id": 3
       },
-      "4d": {
-        "name": "Cafetal Griselda",
+      "4": {
+        "name": "Cafetal Gualo",
         "id": 4
+      },
+      "5": {
+        "name": "Cafetal Griselda",
+        "id": 5
       }
     }
   }

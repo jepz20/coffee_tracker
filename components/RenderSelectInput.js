@@ -1,27 +1,24 @@
 import React from 'react';
-import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import authStyles from '../styles/authentication.js';
 import { primaryColor, secondaryColor } from '../styles/general';
+import SelectField from 'react-md/lib/SelectFields';
 
 const RenderSelectInput = field => {
-  const { input, label, meta, items, ...rest } = field;
+  const { input, label, meta, loading, items, ...rest } = field;
   return (
-    <SelectField
-      style={ authStyles.textField.general }
-      floatingLabelText={label}
-      { ...input}
-      errorText={ meta.touched && meta.error }
-      floatingLabelFixed={true}
-      floatingLabelStyle={ { ...secondaryColor, left: 0 } }
-      floatingLabelFocusStyle={ primaryColor }
-      onChange={(event, index, value) => input.onChange(value)}
-      { ...rest }
-    >
-      {
-        items.map(item => <MenuItem key={item.id} value={item.id} primaryText={item.name} />)
-      }
-    </SelectField>
+      <SelectField
+        label={label}
+        menuItems={items}
+        itemLabel="name"
+        { ...rest }
+        itemValue="id"
+        className="md-cell"
+        errorText={meta.error}
+        error={ meta.invalid && meta.touched }
+        onChange={(newValue, newActiveIndex, event) => input.onChange(newValue)}
+        onBlur={()=>input.onBlur()}
+      />
   );
 };
 

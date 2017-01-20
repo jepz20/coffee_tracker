@@ -1,5 +1,14 @@
-export const required = value => value ? undefined : 'Please fill this field';
+export const required = value => {
+  if (value == undefined) {
+    return 'Please fill this field';
+  } else {
+    return undefined;
+  }
+};
 
+export const dateTodayOrLower = value => {
+  console.log(value);
+}
 export const maxLength = max => value =>
   value && value.length > max ? `Must be ${max} characters or less` : undefined;
 

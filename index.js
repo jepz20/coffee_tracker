@@ -19,7 +19,12 @@ import AddBudget from './components/AddBudget';
 import PropertiesList from './components/PropertiesList';
 import PropertiesActions from './components/PropertiesActions';
 import Error404 from './components/404';
-
+import WebFontLoader from 'webfontloader';
+WebFontLoader.load({
+  google: {
+    families: ['Roboto:300,400,500,700', 'Material Icons'],
+  },
+});
 injectTapEventPlugin();
 
 const muiTheme = getMuiTheme({

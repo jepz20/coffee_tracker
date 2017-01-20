@@ -13,6 +13,21 @@ export const setActiveTabFromRoute = route => ({
   route,
 });
 
+//EXPENSES
+export const fetchExpensesCategories = id => {
+  const expensesCategoriesRef =  firebaseDb.ref(`/categories`);
+  return (
+    dispatch => {
+      expensesCategoriesRef.on('value', snapshot => {
+        dispatch({
+          type: 'SET_EXPENSES_CATEGORIES',
+          expensesCategories: snapshot.val(),
+        });
+      });
+    }
+  );
+};
+
 //MAP ACTIONS
 export const boundsChanged = (center, zoom, bounds) => ({
   type: 'BOUNDS_CHANGED',

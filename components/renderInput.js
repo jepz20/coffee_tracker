@@ -14,6 +14,14 @@ const renderInput = (field) => {
       floatingLabelFixed={ true }
       floatingLabelStyle={ secondaryColor }
       floatingLabelFocusStyle={ primaryColor }
+      onChange={(e) => {
+          input.onChange(e.target.value);
+          if (!meta.touched) {
+            input.onBlur();
+            input.onFocus();
+          }
+        }
+      }
       { ...rest }
     />
   );

@@ -19,3 +19,17 @@ export const forms = {
   textAlign: 'center',
   display: 'inline-block',
 };
+
+export const subforms = {
+  marginLeft: 20,
+  marginRight: '20px',
+  paddingBottom: '16px',
+  marginBottom: '16px',
+};
+
+export const subformHeader = {
+  textAlign: 'start',
+  width: '100%',
+  position: 'relative',
+  fontSize: '18px',
+};

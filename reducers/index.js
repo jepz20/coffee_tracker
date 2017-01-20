@@ -12,6 +12,7 @@ import areaDetail from './areaDetail';
 import propertiesList from './propertiesList';
 import propertiesActions from './propertiesActions';
 import property from './property';
+import expensesCategories from './expensesCategories';
 
 export default combineReducers({
   routing: routerReducer,
@@ -27,4 +28,5 @@ export default combineReducers({
   areaDetail,
   propertiesActions,
   property,
+  expensesCategories,
 });
