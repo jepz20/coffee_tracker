@@ -7,6 +7,7 @@ import FontIcon from 'material-ui/FontIcon';
 import Loader from '../components/Loader';
 import Map from './Map';
 import ExpensesList from './ExpensesList';
+import EventsList from './EventsList';
 
 const mapStateToProps = state => ({
   routing: state.routing,
@@ -64,6 +65,9 @@ class PropertiesActions extends React.Component {
         break;
       case 'expenses':
         child =  <ExpensesList />;
+        break;
+      case 'events':
+        child =  <EventsList />;
         break;
       default:
         child = null;

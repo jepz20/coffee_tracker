@@ -16,6 +16,7 @@ import News from './components/News';
 import Authentication from './components/Authentication';
 import NewsLanding from './components/NewsLanding';
 import AddExpenses from './components/AddExpenses';
+import AddEvent from './components/AddEvent';
 import ExpenseLanding from './components/ExpenseLanding';
 import PropertiesList from './components/PropertiesList';
 import PropertiesActions from './components/PropertiesActions';
@@ -52,13 +53,13 @@ render(
         <Route component={ App }>
           <Route component={ Main }>
             <Route path='/' component={ News } />
+            <Route path='/properties/:propertyId/events/add' component={ AddEvent } />
             <Route path='/properties/:propertyId/expenses/add' component={ AddExpenses } />
             <Route
               path='/properties/:propertyId/expenses/:expenseId'
               component={ ExpenseLanding }
             />
-            <Route path='/properties' component={ PropertiesList }>
-            </Route>
+            <Route path='/properties' component={ PropertiesList } />
             <Route path='/properties/:propertyId' component={ PropertiesActions } />
             <Route path='/properties/:propertyId/:action' component={ PropertiesActions } />
             <Route path='/news' component={ News } />

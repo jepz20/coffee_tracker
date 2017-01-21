@@ -14,6 +14,9 @@ import propertiesActions from './propertiesActions';
 import property from './property';
 import expensesCategories from './expensesCategories';
 import expensesList from './expensesList';
+import eventsList from './eventsList';
+import eventTypes from './eventTypes';
+import eventFrequencies from './eventFrequencies';
 import expenseLanding from './expenseLanding';
 
 export default combineReducers({
@@ -32,5 +35,8 @@ export default combineReducers({
   property,
   expensesCategories,
   expensesList,
+  eventsList,
+  eventFrequencies,
+  eventTypes,
   expenseLanding,
 });

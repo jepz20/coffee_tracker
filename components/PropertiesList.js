@@ -7,8 +7,9 @@ import Subheader from 'material-ui/Subheader';
 import { List, ListItem } from 'material-ui/List';
 import Loader from '../components/Loader';
 import dateformat from 'dateformat';
+import { primaryTextSize, secondaryColor } from '../styles/general';
 
-const mapStateToProps = state => ({
+const propertyStateToProps = state => ({
   routing: state.routing,
   propertiesList: state.propertiesList,
 });
@@ -47,24 +48,30 @@ class PropertiesList extends React.Component {
         <List>
           <h3>Properties</h3>
           {
-            allProperties.map((map, index) => (
+            allProperties.map((property, index) => (
                 <div key={ index }>
                   <ListItem
                     role="button"
-                    onClick={ e => goToMapDetail(map.id)}
-                    onKeyPress={ e => handleEnter(e, map.id)}
-                    primaryText={ map.name }
+                    onClick={ e => goToMapDetail(property.id)}
+                    onKeyPress={ e => handleEnter(e, property.id)}
+                    primaryText={
+                      <div style={ { ...primaryTextSize, fontWeight: '800' } }>
+                        { property.name }
+                      </div>
+                    }
                     secondaryText={
-                      <p>
-                        <span>
-                          { map.dateItWasPlanted
-                            ? dateformat(
-                              new Date(map.dateItWasPlanted * 1000), 'dd/mm/yyyy'
-                            )
-                            : '' }
-                        </span> --
-                        { ' ' + map.description}
-                      </p>
+                      <div style={{ ...secondaryColor, ...primaryTextSize, height: 'auto' }}>
+                        <div>
+                          <span>
+                            { property.dateItWasPlanted
+                              ? dateformat(
+                                new Date(property.dateItWasPlanted * 1000), 'dd/mm/yyyy'
+                              )
+                              : '' }
+                          </span> --
+                          { ' ' + property.description}
+                        </div>
+                      </div>
                     }
                     secondaryTextLines={2}
                   />
@@ -78,5 +85,5 @@ class PropertiesList extends React.Component {
   }
 };
 
-PropertiesList = connect(mapStateToProps, actions)(PropertiesList);
+PropertiesList = connect(propertyStateToProps, actions)(PropertiesList);
 export default PropertiesList;

@@ -14,27 +14,29 @@ import { formatNumber } from '../utils/numbers';
 
 const mapStateToProps = state => ({
   routing: state.routing,
-  expensesList: state.expensesList,
+  eventTypes: state.eventTypes,
+  eventsList: state.eventsList,
 });
 
-class ExpensesList extends React.Component {
+class EventsList extends React.Component {
   constructor(props) {
     super(props);
   }
 
   componentWillMount() {
-    const { fetchExpensesListByPropertyId, params } = this.props;
-    fetchExpensesListByPropertyId(params.propertyId);
+    const { fetchEventsListByPropertyId, params } = this.props;
+
+    fetchEventsListByPropertyId(params.propertyId);
   }
 
   render() {
-    const { expensesList } = this.props;
+    const { eventsList, eventTypes } = this.props;
 
-    const { detail, loading } = expensesList;
+    const { detail, loading } = eventsList;
 
-    if (loading) {
-      return <Loader />;
-    };
+    // if (loading) {
+    //   return <Loader />;
+    // };
 
     const handleEnter = (evt, id) => {
       if (evt.key === 'Enter') {
@@ -47,14 +49,14 @@ class ExpensesList extends React.Component {
     );
 
     const goToExpenseDetail = id => {
-      const { expensesList, params } = this.props;
+      const { eventsList, params } = this.props;
       goToPath(`properties/${params.propertyId}/expenses/${id}`);
     };
 
     return (
       <div className="news--landing">
         <List>
-          <h3>Expenses</h3>
+          <h3>Events</h3>
           {
             detail && Object.keys(detail).reverse().map((key, index) => (
                 <div key={ index }>
@@ -64,13 +66,13 @@ class ExpensesList extends React.Component {
                     onKeyPress={ e => handleEnter(e, key)}
                     primaryText={
                       <div style={ { ...primaryTextSize, fontWeight: '800' } }>
-                        { detail[key].expensesName }
+                        { eventTypes[detail[key].eventsType].name }
                       </div>
                     }
                     secondaryText={
                       <div style={{ ...secondaryColor, ...primaryTextSize, height: 'auto' }}>
                         <div>
-                          Total: { ' $' + formatNumber(detail[key].total) + ' '}
+                          Type: { ' $' + formatNumber(detail[key].eventType) + ' '}
                         </div>
                         <div>
                           Date:
@@ -91,8 +93,8 @@ class ExpensesList extends React.Component {
         </List>
         <FloatingActionButton
           style={{ position: 'fixed', bottom: '20px', right: '24px' }}
-          aria-label="Add Expense"
-          onClick ={() => goToPath(`/properties/${this.props.params.propertyId}/expenses/add`)}>
+          aria-label="Add Event"
+          onClick ={() => goToPath(`/properties/${this.props.params.propertyId}/events/add`)}>
           <ContentAdd />
         </FloatingActionButton>
       </div>
@@ -100,5 +102,5 @@ class ExpensesList extends React.Component {
   }
 };
 
-ExpensesList = connect(mapStateToProps, actions)(ExpensesList);
-export default ExpensesList;
+EventsList = connect(mapStateToProps, actions)(EventsList);
+export default EventsList;

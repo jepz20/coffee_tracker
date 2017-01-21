@@ -8,6 +8,7 @@ import {
 } from '../styles/general';
 import Divider from 'material-ui/Divider';
 import Paper from 'material-ui/Paper';
+import FontIcon from 'material-ui/FontIcon';
 import Loader from './Loader';
 import {
   Table, TableBody, TableHeader,
@@ -59,12 +60,18 @@ class ExpenseLanding extends React.Component {
           <div style={ { display: 'flex' } }>
             <div className="inline--inputs__1">
               <h4 style={ { ...bigTitle, textAlign: 'start' } } >
-                {dateformat(new Date(detail.expensesDate * 1000), 'dd-mm-yyyy')}
+                <FontIcon
+                  className="fa fa-calendar-o"
+                />
+                {' ' + dateformat(new Date(detail.expensesDate * 1000), 'dd-mm-yyyy')}
               </h4>
             </div>
             <div className="inline--inputs__1">
               <h4 style={ { ...bigTitle, textAlign: 'end' } } >
-                Total: ${formatNumber(detail.total)}
+                <FontIcon
+                  className="fa fa-money"
+                />
+                { ' $' + formatNumber(detail.total) }
               </h4>
             </div>
           </div>

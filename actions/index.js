@@ -79,6 +79,38 @@ export const saveExpenses = (propertyId, expenses) => (
   }
 );
 
+// EVENTS ACTIONS
+export const fetchEventsListByPropertyId = id => {
+  const expensesListRef =  firebaseDb.ref(`/properties/${id}/events`);
+  return (
+    dispatch => {
+      expensesListRef.on('value', snapshot => {
+        dispatch({
+          type: 'SET_EVENTS_LIST',
+          expensesList: snapshot.val(),
+        });
+      });
+    }
+  );
+};
+
+export const saveEvent = (propertyId, expenses) => (
+  dispatch => {
+    const baseRef = `/properties/${propertyId}`;
+    console.log(baseRef, 'baseRef');
+    const eventRef = firebaseDb.ref(`${baseRef}/events`);
+
+    eventRef.push(expenses);
+
+    // Object.keys(aggregatedSubProperties).forEach(key => {
+    //   const subsRef = firebaseDb.ref(`${baseRef}/map/coordinates/coords/${key}/info/totalExpenses`);
+    //   subsRef.transaction(function (currentValue) {
+    //     return (currentValue || 0) + aggregatedSubProperties[key];
+    //   });
+    // });
+  }
+);
+
 //MAP ACTIONS
 export const boundsChanged = (center, zoom, bounds) => ({
   type: 'BOUNDS_CHANGED',

@@ -10,3 +10,7 @@ export const limitText = (text, size) => {
 
   return limitedText;
 };
+
+export const capitalize = text => (
+  (!!text) ? text.charAt(0).toUpperCase() + text.substr(1).toLowerCase() : ''
+);

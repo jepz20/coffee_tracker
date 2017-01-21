@@ -29,6 +29,7 @@ class Main extends React.Component {
 
   componentWillMount() {
     this.redirectIfNotLogin();
+
     const { property, fetchPropertyById, params } = this.props;
     if (params.propertyId) {
       if (property.propertyDetail) {

@@ -44,6 +44,7 @@ header {
 
 .inline--inputs {
   display: block;
+  /*min-height: 83px;*/
 }
 .tab-label {
   display: none
@@ -126,14 +127,16 @@ header {
   width: 100%;
   margin-left: 20px;
   margin-right: 20px;
+  margin-top: 0px;
+  margin-bottom: 0px;
   height: 80px;
+  margin-top: 10px;
 }
 
 .md-floating-label {
   font-size: 18.75px;
   left: 0px;
   top: 5px;
-
   font-weight: 400;
 }
 
@@ -204,6 +207,17 @@ header {
 
 }
 
+@media only screen and (min-width: 1024px) {
+  main, .map-container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1140px;
+  }
+
+  .md-cell {
+    margin-top: 16px;
+  }
+}
 
 @media only screen and (min-width: 1200px) {
   main, .map-container {
@@ -211,4 +225,5 @@ header {
     margin-right: auto;
     width: 1140px;
   }
+
 }
