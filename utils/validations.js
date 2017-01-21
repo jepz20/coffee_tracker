@@ -7,8 +7,16 @@ export const required = value => {
 };
 
 export const dateTodayOrLower = value => {
-  console.log(value);
-}
+  let newDate = new Date(value);
+  newDate.setHours(0, 0, 0, 0);
+  newDate.setDate(newDate.getDate() + 1);
+  if (newDate > new Date) {
+    return `Date can't be from the future`;
+  } else {
+    return undefined;
+  }
+};
+
 export const maxLength = max => value =>
   value && value.length > max ? `Must be ${max} characters or less` : undefined;
 

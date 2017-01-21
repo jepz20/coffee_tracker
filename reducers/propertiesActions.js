@@ -7,10 +7,10 @@ const defaultState = {
       index: 0,
       route: 'map',
     }, {
-      label: 'Budget',
+      label: 'Expenses',
       icon: 'fa fa-money',
       index: 1,
-      route: 'budget',
+      route: 'expenses',
     }, {
       label: 'Events',
       icon: 'fa fa-clock-o',

@@ -36,8 +36,8 @@
         "info" : { "dateItWasPlanted" : 1481169605,
           "lastFertilized" : 1481129605,
           "lastPestControl" : 1481169605,
-          "name" : "Jerico Finca Gualo",
-          "totalBudget" : 345541,
+          "name" : "Finca Jerico",
+          "totalExpenses": 0,
           "totalPlants" : 10000
         }
       },
@@ -62,7 +62,7 @@
         "lastFertilized" : 1481129605,
         "lastPestControl" : 1481169605,
         "name" : "Cafetal Tita",
-        "totalBudget" : 65300,
+        "totalExpenses": 0,
         "totalPlants" : 3000
       }
       },
@@ -90,7 +90,7 @@
       "lastFertilized" : 1481129605,
       "lastPestControl" : 1481169605,
       "name" : "Cafetal Mario",
-      "totalBudget" : 5300,
+      "totalExpenses": 0,
       "totalPlants" : 2000
     }
     },
@@ -115,7 +115,7 @@
       "lastFertilized" : 1481129605,
       "lastPestControl" : 1481169605,
       "name" : "Cafetal Gualo",
-      "totalBudget" : 55000,
+      "totalExpenses": 0,
       "totalPlants" : 3000
     }
     },
@@ -136,11 +136,11 @@
     }
     ],
     "id" : 4,
-    "info" : { "dateItWasPlanted" : 1481169605,
+      "info" : { "dateItWasPlanted" : 1481169605,
       "lastFertilized" : 1481129605,
       "lastPestControl" : 1481169605,
       "name" : "Cafetal Griselda",
-      "totalBudget" : 155082,
+      "totalExpenses": 0,
       "totalPlants" : 6000
     }
     }
@@ -152,25 +152,43 @@
     "description": "Finca Ubicada en el municipio de Ojojona en la aldea de Guersine, zona de alto prestigio para la siembra de cafe",
     "dateItWasPlanted" : 1481169605,
     "subProperties": {
-      "1" : {
+      "0" : {
         "name": "General",
+        "id": 0
+      },
+      "1" : {
+        "name": "Cafetal Tita",
         "id": 1
       },
-      "2" : {
-        "name": "Cafetal Tita",
+      "2": {
+        "name": "Cafetal Mario",
         "id": 2
       },
       "3": {
-        "name": "Cafetal Mario",
+        "name": "Cafetal Gualo",
         "id": 3
       },
       "4": {
-        "name": "Cafetal Gualo",
-        "id": 4
-      },
-      "5": {
         "name": "Cafetal Griselda",
-        "id": 5
+        "id": 4
+      }
+    },
+    "categories": {
+      "0": {
+        "name": "PayRoll",
+        "id": 0
+      },
+      "1": {
+      "name": "Fertilizing",
+        "id": 1
+      },
+      "2": {
+        "name": "Construction",
+        "id": 2
+      },
+      "3": {
+        "name": "Cleaning",
+        "id": 3
       }
     }
   }

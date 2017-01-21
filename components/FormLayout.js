@@ -4,8 +4,9 @@ import { icons, forms } from '../styles/general.js';
 import Paper from 'material-ui/Paper';
 import { hashHistory } from 'react-router';
 import AppBar from 'material-ui/AppBar';
+import { primaryTextSize } from '../styles/general';
 
-export const AddBudget = props => {
+export const FormLayout = props => {
   const goBack = () => {
     hashHistory.goBack();
   };
@@ -15,6 +16,7 @@ export const AddBudget = props => {
       <Paper style={forms} zDepth={1}>
         <AppBar
           title= {props.title}
+          titleStyle={ { ...primaryTextSize, fontWeight: '800' } }
           zDepth={ 0 }
           style={ { height: '50px', zIndex: '0', marginBottom: '15px' } }
           onLeftIconButtonTouchTap = { goBack }
@@ -26,12 +28,10 @@ export const AddBudget = props => {
             />
           }
         />
-        <div className="general--form__inputs">
-          {props.children}
-        </div>
+        {props.children}      
       </Paper>
     </div>
   );
 };
 
-export default AddBudget;
+export default FormLayout;

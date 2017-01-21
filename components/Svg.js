@@ -4,6 +4,7 @@ import toPoints from '../utils/toPoints';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import dateformat from 'dateformat';
+import { formatNumber } from '../utils/numbers';
 
 const mapStateToProps = state => ({
   areaDetail: state.areaDetail,
@@ -66,7 +67,16 @@ class Svg extends React.Component {
     const Detail =
         <div style={markerStyle} className="hint__content">
           <h3>{ areaDetail.info.name} </h3>
-          <div>Total Expenses: <b> ${ areaDetail.info.totalBudget} </b></div>
+          <div>
+            Total Expenses:
+            <b>
+              $ {
+                  areaDetail.info.totalExpenses
+                  ? formatNumber(areaDetail.info.totalExpenses)
+                  : 0
+                }
+            </b>
+          </div>
           <div>Total Plants: <b> { areaDetail.info.totalPlants} </b></div>
           <div>Plantation Date: <b> {
               areaDetail.info.dateItWasPlanted

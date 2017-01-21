@@ -13,6 +13,8 @@ import propertiesList from './propertiesList';
 import propertiesActions from './propertiesActions';
 import property from './property';
 import expensesCategories from './expensesCategories';
+import expensesList from './expensesList';
+import expenseLanding from './expenseLanding';
 
 export default combineReducers({
   routing: routerReducer,
@@ -29,4 +31,6 @@ export default combineReducers({
   propertiesActions,
   property,
   expensesCategories,
+  expensesList,
+  expenseLanding,
 });

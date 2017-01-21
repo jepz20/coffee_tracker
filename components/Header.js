@@ -117,7 +117,10 @@ class Header extends React.Component {
               <MenuItem
                 tabIndex={ drawerTabIndex }
                 aria-hidden={!header.drawerOpen}
-                leftIcon={ <FontIcon style= { primaryColor } className={item.icon} /> }
+                leftIcon={ <FontIcon
+                  style= { { ...primaryColor, marginTop: '0px' } }
+                  className={item.icon}
+                /> }
                 key={item.index}
                 id={`drawerItem${item.index}`}
                 onTouchTap={ () => goToRoute(item.route) }

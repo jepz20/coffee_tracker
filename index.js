@@ -15,7 +15,8 @@ import Content from './components/Content';
 import News from './components/News';
 import Authentication from './components/Authentication';
 import NewsLanding from './components/NewsLanding';
-import AddBudget from './components/AddBudget';
+import AddExpenses from './components/AddExpenses';
+import ExpenseLanding from './components/ExpenseLanding';
 import PropertiesList from './components/PropertiesList';
 import PropertiesActions from './components/PropertiesActions';
 import Error404 from './components/404';
@@ -51,7 +52,11 @@ render(
         <Route component={ App }>
           <Route component={ Main }>
             <Route path='/' component={ News } />
-            <Route path='/properties/:propertyId/budget/addexpenses' component={ AddBudget } />
+            <Route path='/properties/:propertyId/expenses/add' component={ AddExpenses } />
+            <Route
+              path='/properties/:propertyId/expenses/:expenseId'
+              component={ ExpenseLanding }
+            />
             <Route path='/properties' component={ PropertiesList }>
             </Route>
             <Route path='/properties/:propertyId' component={ PropertiesActions } />

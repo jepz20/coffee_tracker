@@ -12,38 +12,20 @@ import RenderSelectInput from './RenderSelectInput';
 import Paper from 'material-ui/Paper';
 import Loader from './Loader';
 import { required, minValue, dateTodayOrLower } from '../utils/validations';
+import { aggregateField } from '../utils/arrays';
 import FormLayout from './FormLayout';
-
-const validate = values => {
-  const errors = {};
-
-  if (!values.expenses || !values.expenses.length) {
-    errors.expenses = { _error: 'At least one Expense must be entered' };
-  } else {
-    const expensesArrayErrors = [];
-    values.expenses.forEach((member, memberIndex) => {
-      const memberErrors = {};
-    });
-
-    if (expensesArrayErrors.length) {
-      errors.expenses = expensesArrayErrors;
-      console.log(errors.expenses);
-    }
-
-  }
-
-  return errors;
-};
 
 const mapStateToProps = (state) => ({
   property: state.property,
   expensesCategories: state.expensesCategories,
   routeHistory: state.routeHistory,
+  user: state.user,
 });
 
-class AddBudget extends React.Component {
+class AddExpenses extends React.Component {
   constructor(props) {
     super(props);
+    this.submitExpenses = this.submitExpenses.bind(this);
   }
 
   componentWillMount() {
@@ -64,6 +46,47 @@ class AddBudget extends React.Component {
     }
   }
 
+  submitExpenses(expenses) {
+    let newExpenses = { ...expenses };
+    const { propertyId } = this.props.params;
+    const { user, saveExpenses, property } = this.props;
+    const total = newExpenses.expenses.reduce((prev, act) => {
+      if (act.expensesAmount && act.expensesAmount > 0) {
+        return prev + parseInt(act.expensesAmount);
+      }
+
+      return prev;
+    }, 0);
+
+    const userDet = { email: user.userInfo.email, uid: user.userInfo.uid };
+    if (!newExpenses.expensesName) {
+      newExpenses.expensesName =
+        `Expenses for ${property.propertyDetail.name} on ${newExpenses.expensesDate}`;
+    }
+
+    const aggregatedCategories = aggregateField(
+      newExpenses.expenses, 'expensesCategory',
+      'expensesAmount'
+    );
+
+    let aggregatedSubProperties = aggregateField(
+      newExpenses.expenses, 'expensesSubProperties',
+      'expensesAmount', 0
+    );
+    console.log(aggregatedSubProperties, 'asp');
+    const newDate = new Date(expenses.expensesDate);
+    newDate.setDate(newDate.getDate() + 1);
+    newExpenses.expensesDate = newDate.getTime() / 1000;
+    const expensesReadyToSubmit = {
+      ...newExpenses, total,
+      user: userDet,
+      aggregatedCategories,
+      aggregatedSubProperties,
+    };
+
+    saveExpenses(propertyId, expensesReadyToSubmit);
+  }
+
   componentDidUpdate() {
     const el = document.getElementById('expensesName');
     if (el) {
@@ -72,7 +95,7 @@ class AddBudget extends React.Component {
   }
 
   render() {
-    const { property, expensesCategories, addExpensesValues } = this.props;
+    const { property, expensesCategories, addExpensesValues, saveExpenses } = this.props;
 
     if (property.loading) {
       return <Loader />;
@@ -85,6 +108,7 @@ class AddBudget extends React.Component {
       constructor(props) {
         super(props);
       }
+
       componentDidUpdate(prevProps, prevState) {
         const { fields } = this.props;
         if (prevProps.fields.length == fields.length || fields.length <= 1) {
@@ -152,8 +176,6 @@ class AddBudget extends React.Component {
                             validate={ required }
                             items={ subProperties }
                           />
-                        </div>
-                        <div className="inline--inputs inline--inputs__1">
                           <Field
                             name={`${member}.expensesAmount`}
                             className="inline--inputs__2"
@@ -163,15 +185,19 @@ class AddBudget extends React.Component {
                             validate={[required, minValue(0)]}
                             type="number"
                           />
-                          <Field
-                            className="inline--inputs__2"
-                            name={`${member}.expensesObservation`}
-                            component={renderInput}
-                            type="text"
-                            id={ `${member}.expensesObservation` }
-                            label="Observation"
-                          />
                         </div>
+                      </div>
+                      <div className="inline--inputs__full">
+                        <Field
+                          name={`${member}.expensesObservation`}
+                          component={renderInput}
+                          type="text"
+                          multiLine={true}
+                          rows={2}
+                          rowsMax={4}
+                          id={ `${member}.expensesObservation` }
+                          label="Observation"
+                        />
                       </div>
                     </div>
 
@@ -190,7 +216,7 @@ class AddBudget extends React.Component {
       }
     }
 
-    let AddBudgetForm = props => {
+    let AddExpensesForm = props => {
       let total = 0;
       if (props.expensesData) {
         total = props.expensesData.reduce((prev, act) => {
@@ -202,71 +228,74 @@ class AddBudget extends React.Component {
         }, 0);
       }
 
-      return <form id="addexpenses" onSubmit= { props.handleSubmit(props.doSubmit) }>
-        <div className="inline--inputs">
+      return (
+        <form id="addexpenses" onSubmit= { props.handleSubmit(props.doSubmit) }>
+          <div className="inline--inputs">
+            <div className="inline--inputs__1">
+              <h3 style={{ fontSize: '30px', fontWeight: 800 }} >Total: {total}</h3>
+              <Divider />
+            </div>
+          </div>
+          <div className="inline--inputs">
+            <Field
+              className="inline--inputs__2"
+              name="expensesName"
+              component={renderInput}
+              type="text"
+              id="expensesName"
+              label="Name"
+              placeholder={
+                `Expenses for ${propertyDetail.name} on ${dateformat(new Date, 'dd-mm-yyyy')}`
+              }
+            />
+            <Field
+              className="inline--inputs__1"
+              name="expensesDate"
+              component={renderInput}
+              type="date"
+              id="expensesDate"
+              validate={ [required, dateTodayOrLower] }
+              label="Date"
+            />
+          </div>
+          <FieldArray name="expenses" component={ RenderSpecificExpense } />
+          { props.registerError && <div className="form--error"> { props.registerError } </div> }
           <div className="inline--inputs__1">
             <h2 style={{ fontSize: '30px', fontWeight: 800 }} >Total: {total}</h2>
             <Divider />
           </div>
-        </div>
-        <div className="inline--inputs">
-          <Field
-            className="inline--inputs__2"
-            name="expensesName"
-            component={renderInput}
-            type="text"
-            id="expensesName"
-            label="Name"
-            placeholder={
-              `Expenses for ${propertyDetail.name} on ${dateformat(new Date, 'dd-mm-yyyy')}`
-            }
+          <PrimaryButton label="Save" type="submit"
           />
-          <Field
-            className="inline--inputs__1"
-            name="expensesDate"
-            component={renderInput}
-            type="date"
-            id="expensesDate"
-            validate={ [required, dateTodayOrLower] }
-            label="Date"
-          />
-        </div>
-        <FieldArray name="expenses" component={ RenderSpecificExpense } />
-        { props.registerError && <div className="form--error"> { props.registerError } </div> }
-        <div className="inline--inputs__1">
-          <h2 style={{ fontSize: '30px', fontWeight: 800 }} >Total: {total}</h2>
-          <Divider />
-        </div>
-        <PrimaryButton label="Save" type="submit"
-        />
-      </form>
+        </form>
+      );
     };
 
-    AddBudgetForm = reduxForm({
+    AddExpensesForm = reduxForm({
       form: 'addexpenses',
-      validate,
       initialValues: {
         expensesDate: dateformat(new Date, 'yyyy-mm-dd'),
         expenses: [],
       },
-    })(AddBudgetForm);
+    })(AddExpensesForm);
     const selector = formValueSelector('addexpenses');
-    AddBudgetForm = connect(
+    AddExpensesForm = connect(
       state => {
         const expensesData = selector(state, 'expenses');
         return { expensesData };
-      })(AddBudgetForm);
+      })(AddExpensesForm);
 
     return (
       <FormLayout title={`Add Expenses to ${propertyDetail.name}`}>
-        <AddBudgetForm
-          doSubmit={ () => console.log('ol') }
-          registerError= { '' }
-        />
+        <div className="general--form__inputs">
+          <AddExpensesForm
+            doSubmit={ (value) => this.submitExpenses(value) }
+            registerError= { '' }
+          />          
+        </div>
       </FormLayout>
     );
   }
 };
 
-AddBudget = connect(mapStateToProps, actions)(AddBudget);
-export default AddBudget;
+AddExpenses = connect(mapStateToProps, actions)(AddExpenses);
+export default AddExpenses;

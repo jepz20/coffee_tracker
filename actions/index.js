@@ -2,7 +2,6 @@ import * as api from '../api';
 import { firebaseDb } from '../utils/firebase.js';
 
 //PROPERTIES ACTIONS
-
 export const setActiveTab = activeTab => ({
   type: 'SET_ACTIVE_TAB',
   activeTab,
@@ -27,6 +26,58 @@ export const fetchExpensesCategories = id => {
     }
   );
 };
+
+export const fetchExpensesListByPropertyId = id => {
+  const expensesListRef =  firebaseDb.ref(`/properties/${id}/expenses`);
+  return (
+    dispatch => {
+      expensesListRef.on('value', snapshot => {
+        dispatch({
+          type: 'SET_EXPENSES_LIST',
+          expensesList: snapshot.val(),
+        });
+      });
+    }
+  );
+};
+
+export const fetchExpenseById = (propertyId, expenseId) => {
+  const expenseRef =  firebaseDb.ref(`/properties/${propertyId}/expenses/${expenseId}`);
+  return (
+    dispatch => {
+      expenseRef.on('value', snapshot => {
+        dispatch({
+          type: 'SET_EXPENSE_DETAIL',
+          expenseDetail: snapshot.val(),
+        });
+      });
+    }
+  );
+};
+
+export const saveExpenses = (propertyId, expenses) => (
+  dispatch => {
+    const baseRef = `/properties/${propertyId}`;
+    console.log(baseRef, 'baseRef');
+    const propertyRef = firebaseDb.ref(`${baseRef}/expenses`);
+    const { aggregatedCategories, aggregatedSubProperties } = expenses;
+
+    propertyRef.push(expenses);
+    Object.keys(aggregatedSubProperties).forEach(key => {
+      const subsRef = firebaseDb.ref(`${baseRef}/map/coordinates/coords/${key}/info/totalExpenses`);
+      subsRef.transaction(function (currentValue) {
+        return (currentValue || 0) + aggregatedSubProperties[key];
+      });
+    });
+
+    Object.keys(aggregatedCategories).forEach(key => {
+      const subsRef = firebaseDb.ref(`${baseRef}/categories/${key}/totalExpenses`);
+      subsRef.transaction(function (currentValue) {
+        return (currentValue || 0) + aggregatedCategories[key];
+      });
+    });
+  }
+);
 
 //MAP ACTIONS
 export const boundsChanged = (center, zoom, bounds) => ({

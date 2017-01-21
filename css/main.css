@@ -1,10 +1,15 @@
+html {
+  background-color: #fff;
+  font-size: 18.5px;
+}
+
 .app {
     overflow: hidden;
     width: 100%;
     height: 100%;
     box-sizing: border-box;
     display: flex;
-    flex-direction: column
+    flex-direction: column;
 }
 
 ul {
@@ -33,6 +38,10 @@ header {
   flex: 2
 }
 
+.inline--inputs__full {
+  width: 100%
+}
+
 .inline--inputs {
   display: block;
 }
@@ -42,7 +51,7 @@ header {
 
 .map-container {
   position: absolute;
-  height: calc(100% - 80px);
+  height: calc(100% - 140px);
   width: 100%;
 
 }
@@ -117,7 +126,6 @@ header {
   width: 100%;
   margin-left: 20px;
   margin-right: 20px;
-  margin-top: 9px;
   height: 80px;
 }
 
@@ -151,12 +159,13 @@ header {
   font-size: 20px;
 }
 
-/*.md-divider {
-  height: 2px;
-}*/
-
 .general--form__inputs {
   width: calc(100% - 40px);
+}
+
+.general--form__view {
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 .form--error {

@@ -12,7 +12,7 @@ const renderInput = (field) => {
       { ...input}
       errorText={ meta.touched && meta.error }
       floatingLabelFixed={ true }
-      floatingLabelStyle={ secondaryColor }
+      floatingLabelStyle={ { ...secondaryColor, left: 0 } }
       floatingLabelFocusStyle={ primaryColor }
       onChange={(e) => {
           input.onChange(e.target.value);

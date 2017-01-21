@@ -6,7 +6,7 @@ import { Tabs, Tab } from 'material-ui/Tabs';
 import FontIcon from 'material-ui/FontIcon';
 import Loader from '../components/Loader';
 import Map from './Map';
-import BudgetList from './BudgetList';
+import ExpensesList from './ExpensesList';
 
 const mapStateToProps = state => ({
   routing: state.routing,
@@ -22,6 +22,7 @@ class PropertiesActions extends React.Component {
   componentWillMount() {
     const { propertiesActions, params } = this.props;
     const filterTabs = propertiesActions.tabs.filter(tab => tab.route == params.action);
+
     if (filterTabs.length <= 0) {
       hashHistory.push('/404');
     }
@@ -61,8 +62,8 @@ class PropertiesActions extends React.Component {
       case 'map':
         child = <Map/>;
         break;
-      case 'budget':
-        child =  <BudgetList />;
+      case 'expenses':
+        child =  <ExpensesList />;
         break;
       default:
         child = null;

@@ -8,6 +8,7 @@ import Loader from '../components/Loader';
 const mapStateToProps = (state) => ({
   routing: state.routing,
   user: state.user,
+  property: state.property,
 });
 
 class Main extends React.Component {
@@ -28,6 +29,16 @@ class Main extends React.Component {
 
   componentWillMount() {
     this.redirectIfNotLogin();
+    const { property, fetchPropertyById, params } = this.props;
+    if (params.propertyId) {
+      if (property.propertyDetail) {
+        if (property.propertyDetail.id == params.propertyId) {
+          return;
+        }
+      }
+
+      fetchPropertyById(params.propertyId);
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
