@@ -40,7 +40,7 @@ config = {
       root: process.cwd(),
     }),
     new CopyWebpackPlugin([
-      { from: 'images', to: 'images' },
+      { from: 'manifest.json', to: 'manifest.json' },
     ]),
     new SWPrecacheWebpackPlugin({
       cacheId: 'coffeeT',

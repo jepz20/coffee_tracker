@@ -2,6 +2,13 @@ import * as api from '../api';
 import { firebaseDb } from '../utils/firebase';
 import { pad } from '../utils/numbers';
 
+
+//NOTIFICATIONS actions
+
+export const setNotificationPermission = () => ({
+  type: 'SET_NOTIFICATION_PERMISSIONS',
+});
+
 //PROPERTIES ACTIONS
 export const setActiveTab = activeTab => ({
   type: 'SET_ACTIVE_TAB',

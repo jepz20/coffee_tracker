@@ -13,7 +13,6 @@ app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-var routes = require('./server/routes/routes.js')(app);
 
 app.use(function (req, res, next) {
   console.log(req.url);
@@ -29,8 +28,7 @@ app.use(express.static(root + '/dist', {
   },
 }));
 
-app.use(favicon(__dirname + '/images/favicon.png'));
-app.use('/data', express.static('data'));
+// app.use(favicon(__dirname + '/images/favicon.png'));
 server = app.listen(port, serverStarted);
 
 function serverStarted() {

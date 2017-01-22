@@ -8,11 +8,22 @@ import { firebaseAuth } from '../utils/firebase.js';
 const mapStateToProps = (state) => ({
   routing: state.routing,
   user: state.user,
+  notifications: state.notifications,
 });
 
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.setNotificationPermission = this.setNotificationPermission.bind(this);
+  }
+
+  setNotificationPermission() {
+    if (this.props.user.logged == 1) {
+      const { notifications, setNotificationPermission } = this.props;
+      if (!notifications.verified) {
+        setNotificationPermission();
+      }
+    }
   }
 
   componentWillMount() {
@@ -24,6 +35,14 @@ class App extends React.Component {
         setUserInfo({ logged: 0, userInfo: {} });
       }
     });
+  }
+
+  componentDidMount() {
+    this.setNotificationPermission();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    this.setNotificationPermission();
   }
 
   render() {

@@ -18,6 +18,7 @@ import eventsList from './eventsList';
 import eventTypes from './eventTypes';
 import eventFrequencies from './eventFrequencies';
 import expenseLanding from './expenseLanding';
+import notifications from './notifications';
 
 export default combineReducers({
   routing: routerReducer,
@@ -39,4 +40,5 @@ export default combineReducers({
   eventFrequencies,
   eventTypes,
   expenseLanding,
+  notifications,
 });
