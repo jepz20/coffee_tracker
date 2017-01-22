@@ -6,17 +6,19 @@
     <meta name="viewport" content="width=device-width">
     <title>CoffeeT</title>
     <link rel="manifest" href="/manifest.json">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="theme-color" content="#6CC8C1">
   </head>
   <body>
     <div id="root"></div>
     <script>
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/service-worker.js').then((r) => {
-          console.log('Service Worker Registered');
-        });
+        navigator.serviceWorker.register('/service-worker.js');
       }
     </script>
-  <script type="text/javascript" src="manifest.632b8b1b55c46f4daffa.js"></script><script type="text/javascript" src="vendor.d84c85e5bbfb61d6b87e.js"></script><script type="text/javascript" src="app.4d3d431c274cfc372546.js"></script></body>
+  <script type="text/javascript" src="manifest.bf7bc2fdba8cc1d07748.js"></script><script type="text/javascript" src="vendor.e3bbff0c7562ed40ced1.js"></script><script type="text/javascript" src="app.04accc66eae587104dcf.js"></script></body>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <noscript>
+  <!-- anchor linking to external file -->
+    <div>Sorry! You need javascript to use this app :(</div>
+</noscript>
 </html>

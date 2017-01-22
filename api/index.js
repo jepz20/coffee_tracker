@@ -4,8 +4,6 @@ export const createNewUser = (email, password, name) => (
   firebaseAuth.createUserWithEmailAndPassword(email, password)
   .then(response => {
     const user = firebaseAuth.currentUser;
-    console.log(user, 'enapi');
-    console.log(name, 'enapi');
     user.updateProfile({
       displayName: name,
     });

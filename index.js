@@ -1,6 +1,5 @@
 import App from './components/App';
 import configureStore from './store/configureStore';
-
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { grey50, brown700 } from 'material-ui/styles/colors';
 import React from 'react';
@@ -22,17 +21,21 @@ import PropertiesList from './components/PropertiesList';
 import PropertiesActions from './components/PropertiesActions';
 import Error404 from './components/404';
 import WebFontLoader from 'webfontloader';
+
 WebFontLoader.load({
   google: {
     families: ['Roboto:300,400,500,700', 'Material Icons'],
   },
 });
+
 injectTapEventPlugin();
 
 const muiTheme = getMuiTheme({
   palette: {
     primary1Color: '#6CC8C1',
     accent1Color: brown700,
+    textColor: '#000',
+    alternateTextColor: '#4E342E',
   },
   appBar: {
     height: 48,
@@ -41,7 +44,10 @@ const muiTheme = getMuiTheme({
 
 import 'normalize.css';
 import './node_modules/font-awesome/css/font-awesome.min.css';
+// import './css/md.css';
+import './index.scss';
 import './css/main.css';
+
 
 const store = configureStore();
 const history = syncHistoryWithStore(hashHistory, store);

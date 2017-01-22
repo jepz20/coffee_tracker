@@ -8,7 +8,7 @@ var path = require('path');
 var host = process.env.HOST || '0.0.0.0';
 var port = process.env.PORT || 2222;
 var root = path.resolve(__dirname);
-
+var fs = require('fs');
 app = express();
 app.use(cors());
 app.use(bodyParser.json());
@@ -28,7 +28,7 @@ app.use(express.static(root + '/dist', {
   },
 }));
 
-// app.use(favicon(__dirname + '/images/favicon.png'));
+app.use(favicon(__dirname + '/images/favicon.ico'));
 server = app.listen(port, serverStarted);
 
 function serverStarted() {

@@ -1,0 +1,14 @@
+// index.scss
+@import '/node_modules/react-md/src/scss/react-md';
+
+@include react-md-select-fields;
+@include react-md-dividers;
+@include react-md-text-fields;
+@include react-md-overlays;
+@include react-md-papers;
+@include react-md-typography;
+@include react-md-accessibility;
+@include react-md-icons;
+@include react-md-lists;
+@include react-md-menus;
+@include react-md-overlays;

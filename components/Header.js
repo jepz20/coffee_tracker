@@ -74,7 +74,7 @@ class Header extends React.Component {
           onLeftIconButtonTouchTap = { toggleDrawerOpen }
           iconElementLeft={
             <IconButton
-              iconStyle={ icons.white }
+              iconStyle={ icons.primaryTextColor }
               iconClassName='fa fa-bars'
               aria-label="Toggle Menu"
             />
@@ -82,14 +82,13 @@ class Header extends React.Component {
           iconElementRight = {
             <div>
               <IconButton
-                iconStyle={ icons.white }
+                iconStyle={ icons.primaryTextColor }
                 iconClassName='fa fa-sign-out'
-                tooltip="logout"
                 aria-label="logout"
                 onTouchTap={ logout }
               />
               <IconButton
-                iconStyle={ icons.white }
+                iconStyle={ icons.primaryTextColor }
                 aria-label="go to github"
                 style={{ paddingTop: 0 }}
                 iconClassName='fa fa-github'

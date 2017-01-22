@@ -1,7 +1,6 @@
 export const icons = {
-  white: {
-    color: 'white',
-
+  primaryTextColor: {
+    color: '#4E342E',
     fontSize: '30px',
   },
 };

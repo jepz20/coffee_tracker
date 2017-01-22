@@ -84,24 +84,18 @@ export const saveExpenses = (propertyId, expenses) => (
       });
     });
     const expenseDate = new Date(expenses.expensesDate * 1000);
-    console.log(expenseDate);
     const monthYear = pad(expenseDate.getMonth() + 1, 2) + expenseDate.getFullYear();
-    console.log(monthYear);
     const subsRef = firebaseDb.ref(`${baseRef}/expensesByMonth/${monthYear}`);
     subsRef.transaction(function (currentValue) {
       if (currentValue) {
         if (currentValue.totalExpenses) {
-          console.log('1');
           currentValue.totalExpenses = currentValue.totalExpenses + expenses.total;
         } else {
-          console.log('2');
           currentValue.totalExpenses = expenses.total;
         }
 
-        console.log('3');
         return (currentValue);
       } else {
-        console.log('4');
         return {
           month: expenseDate.getMonth() + 1,
           year: expenseDate.getFullYear(),

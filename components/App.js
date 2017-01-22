@@ -1,5 +1,4 @@
 import React from 'react';
-import Authentication from './Authentication.js';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import { hashHistory } from 'react-router';
@@ -18,7 +17,7 @@ class App extends React.Component {
   }
 
   setNotificationPermission() {
-    if (this.props.user.logged == 1) {
+    if (this.props.user.logged < 1) {
       const { notifications, setNotificationPermission } = this.props;
       if (!notifications.verified) {
         setNotificationPermission();
@@ -42,6 +41,7 @@ class App extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    console.log('actualice :D', this.props);
     this.setNotificationPermission();
   }
 
