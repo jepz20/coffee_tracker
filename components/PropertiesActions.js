@@ -8,6 +8,7 @@ import Loader from '../components/Loader';
 import Map from './Map';
 import ExpensesList from './ExpensesList';
 import EventsList from './EventsList';
+import GraphsProperty from './GraphsProperty';
 
 const mapStateToProps = state => ({
   routing: state.routing,
@@ -68,6 +69,9 @@ class PropertiesActions extends React.Component {
         break;
       case 'events':
         child =  <EventsList />;
+        break;
+      case 'graphs':
+        child =  <GraphsProperty />;
         break;
       default:
         child = null;

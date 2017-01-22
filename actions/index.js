@@ -1,5 +1,6 @@
 import * as api from '../api';
-import { firebaseDb } from '../utils/firebase.js';
+import { firebaseDb } from '../utils/firebase';
+import { pad } from '../utils/numbers';
 
 //PROPERTIES ACTIONS
 export const setActiveTab = activeTab => ({
@@ -58,7 +59,6 @@ export const fetchExpenseById = (propertyId, expenseId) => {
 export const saveExpenses = (propertyId, expenses) => (
   dispatch => {
     const baseRef = `/properties/${propertyId}`;
-    console.log(baseRef, 'baseRef');
     const propertyRef = firebaseDb.ref(`${baseRef}/expenses`);
     const { aggregatedCategories, aggregatedSubProperties } = expenses;
 
@@ -75,6 +75,32 @@ export const saveExpenses = (propertyId, expenses) => (
       subsRef.transaction(function (currentValue) {
         return (currentValue || 0) + aggregatedCategories[key];
       });
+    });
+    const expenseDate = new Date(expenses.expensesDate * 1000);
+    console.log(expenseDate);
+    const monthYear = pad(expenseDate.getMonth() + 1, 2) + expenseDate.getFullYear();
+    console.log(monthYear);
+    const subsRef = firebaseDb.ref(`${baseRef}/expensesByMonth/${monthYear}`);
+    subsRef.transaction(function (currentValue) {
+      if (currentValue) {
+        if (currentValue.totalExpenses) {
+          console.log('1');
+          currentValue.totalExpenses = currentValue.totalExpenses + expenses.total;
+        } else {
+          console.log('2');
+          currentValue.totalExpenses = expenses.total;
+        }
+
+        console.log('3');
+        return (currentValue);
+      } else {
+        console.log('4');
+        return {
+          month: expenseDate.getMonth() + 1,
+          year: expenseDate.getFullYear(),
+          totalExpenses: expenses.total,
+        };
+      }
     });
   }
 );
@@ -94,20 +120,17 @@ export const fetchEventsListByPropertyId = id => {
   );
 };
 
-export const saveEvent = (propertyId, expenses) => (
+export const saveEvent = (propertyId, event) => (
   dispatch => {
     const baseRef = `/properties/${propertyId}`;
-    console.log(baseRef, 'baseRef');
     const eventRef = firebaseDb.ref(`${baseRef}/events`);
 
-    eventRef.push(expenses);
+    eventRef.push(event);
+    const lastRef = firebaseDb.ref(
+      `${baseRef}/map/coordinates/coords/${event.eventsSubproperty}/info/lastEventAdded`
+    );
 
-    // Object.keys(aggregatedSubProperties).forEach(key => {
-    //   const subsRef = firebaseDb.ref(`${baseRef}/map/coordinates/coords/${key}/info/totalExpenses`);
-    //   subsRef.transaction(function (currentValue) {
-    //     return (currentValue || 0) + aggregatedSubProperties[key];
-    //   });
-    // });
+    lastRef.set(event);
   }
 );
 

@@ -7,11 +7,13 @@ export const aggregateField = (object, fieldToAggregate, fieldToAdd, addTo=-1) =
       prev[act[fieldToAggregate]] = parseInt(act[fieldToAdd]);
     }
 
-    if (addTo != act[fieldToAggregate]) {
-      if (prev[addTo]) {
-        prev[addTo] = prev[addTo] + parseInt(act[fieldToAdd]);
-      } else {
-        prev[addTo] = parseInt(act[fieldToAdd]);
+    if (addTo != -1) {
+      if (addTo != act[fieldToAggregate]) {
+        if (prev[addTo]) {
+          prev[addTo] = prev[addTo] + parseInt(act[fieldToAdd]);
+        } else {
+          prev[addTo] = parseInt(act[fieldToAdd]);
+        }
       }
     }
 

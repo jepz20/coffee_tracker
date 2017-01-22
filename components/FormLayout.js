@@ -8,6 +8,7 @@ import { primaryTextSize } from '../styles/general';
 
 export const FormLayout = props => {
   const goBack = () => {
+    console.log(hashHistory);
     hashHistory.goBack();
   };
 
@@ -28,7 +29,7 @@ export const FormLayout = props => {
             />
           }
         />
-        {props.children}      
+        {props.children}
       </Paper>
     </div>
   );

@@ -26,9 +26,10 @@ class AddExpenses extends React.Component {
   constructor(props) {
     super(props);
     this.submitExpenses = this.submitExpenses.bind(this);
+    this.getDefaultInfo = this.getDefaultInfo.bind(this);
   }
 
-  componentWillMount() {
+  getDefaultInfo() {
     const { fetchPropertyById, expensesCategories,
       fetchExpensesCategories, params, property, } = this.props;
     if (params.propertyId) {
@@ -44,6 +45,14 @@ class AddExpenses extends React.Component {
     if (expensesCategories.detail.length == 0) {
       fetchExpensesCategories();
     }
+  }
+
+  componentWillMount() {
+    this.getDefaultInfo();
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    this.getDefaultInfo();
   }
 
   submitExpenses(expenses) {
@@ -73,7 +82,6 @@ class AddExpenses extends React.Component {
       newExpenses.expenses, 'expensesSubProperties',
       'expensesAmount', 0
     );
-    console.log(aggregatedSubProperties, 'asp');
     const newDate = new Date(expenses.expensesDate);
     newDate.setDate(newDate.getDate() + 1);
     newExpenses.expensesDate = newDate.getTime() / 1000;
@@ -290,7 +298,7 @@ class AddExpenses extends React.Component {
           <AddExpensesForm
             doSubmit={ (value) => this.submitExpenses(value) }
             registerError= { '' }
-          />          
+          />
         </div>
       </FormLayout>
     );

@@ -7,6 +7,7 @@ import Subheader from 'material-ui/Subheader';
 import { List, ListItem } from 'material-ui/List';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
+import FontIcon from 'material-ui/FontIcon';
 import Loader from '../components/Loader';
 import { secondaryColor, primaryTextSize } from '../styles/general';
 import dateformat from 'dateformat';
@@ -16,6 +17,7 @@ const mapStateToProps = state => ({
   routing: state.routing,
   eventTypes: state.eventTypes,
   eventsList: state.eventsList,
+  property: state.property,
 });
 
 class EventsList extends React.Component {
@@ -30,28 +32,18 @@ class EventsList extends React.Component {
   }
 
   render() {
-    const { eventsList, eventTypes } = this.props;
+    const { eventsList, eventTypes, property } = this.props;
+    const { subProperties } = property.propertyDetail;
 
     const { detail, loading } = eventsList;
 
-    // if (loading) {
-    //   return <Loader />;
-    // };
-
-    const handleEnter = (evt, id) => {
-      if (evt.key === 'Enter') {
-        goToExpenseDetail(id);
-      }
+    if (loading) {
+      return <Loader />;
     };
 
     const goToPath = path => (
-      hashHistory.push(path)
-    );
-
-    const goToExpenseDetail = id => {
-      const { eventsList, params } = this.props;
-      goToPath(`properties/${params.propertyId}/expenses/${id}`);
-    };
+       hashHistory.push(path)
+     );
 
     return (
       <div className="news--landing">
@@ -61,30 +53,52 @@ class EventsList extends React.Component {
             detail && Object.keys(detail).reverse().map((key, index) => (
                 <div key={ index }>
                   <ListItem
-                    role="button"
-                    onClick={ e => goToExpenseDetail(key)}
-                    onKeyPress={ e => handleEnter(e, key)}
                     primaryText={
                       <div style={ { ...primaryTextSize, fontWeight: '800' } }>
-                        { eventTypes[detail[key].eventsType].name }
+                        <div style={ { fontSize: '22px' } }>
+                          { eventTypes[detail[key].eventsType].name }
+                        </div>
+                        {
+                          subProperties
+                          &&
+                          <div>
+                            <FontIcon className='fa fa-home'/>
+                            { ' ' + subProperties[detail[key].eventsSubproperty].name }
+                          </div>
+                        }
                       </div>
                     }
                     secondaryText={
                       <div style={{ ...secondaryColor, ...primaryTextSize, height: 'auto' }}>
-                        <div>
-                          Type: { ' $' + formatNumber(detail[key].eventType) + ' '}
-                        </div>
-                        <div>
-                          Date:
-                          { detail[key].expensesDate
-                            ? ' ' + dateformat(
-                              new Date(detail[key].expensesDate * 1000), 'dd/mm/yyyy'
-                            )
-                            : '' }
+                        { detail[key].eventsExecutionDate
+                          &&
+                          <div>
+                            <FontIcon className='fa fa-calendar-o'/>
+                            {
+                              ' Execution: ' +
+                              dateformat(
+                                new Date(detail[key].eventsExecutionDate * 1000), 'dd/mm/yyyy'
+                              )
+                            }
+                          </div>
+                        }
+                        { detail[key].nextExecution
+                          &&
+                          <div>
+                            <FontIcon className='fa fa-calendar-o'/>
+                            {
+                              ' Next Execution: ' +
+                              dateformat(
+                                new Date(detail[key].nextExecution * 1000), 'dd/mm/yyyy'
+                              )
+                            }
+                          </div>
+                        }
+                        <div style={ { marginTop: '16px' }}>
+                          {detail[key].eventsDescription}
                         </div>
                       </div>
                     }
-                    secondaryTextLines={2}
                   />
                   <Divider/>
                 </div>

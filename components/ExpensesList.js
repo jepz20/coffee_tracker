@@ -7,6 +7,7 @@ import Subheader from 'material-ui/Subheader';
 import { List, ListItem } from 'material-ui/List';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
+import FontIcon from 'material-ui/FontIcon';
 import Loader from '../components/Loader';
 import { secondaryColor, primaryTextSize } from '../styles/general';
 import dateformat from 'dateformat';
@@ -69,20 +70,20 @@ class ExpensesList extends React.Component {
                     }
                     secondaryText={
                       <div style={{ ...secondaryColor, ...primaryTextSize, height: 'auto' }}>
-                        <div>
-                          Total: { ' $' + formatNumber(detail[key].total) + ' '}
-                        </div>
-                        <div>
-                          Date:
+                        <span style={{ marginRight: '16px' }}>
+                          <FontIcon className="fa fa-money"/>
+                          { ' $' + formatNumber(detail[key].total) + ' '}
+                        </span>
+                        <span>
+                          <FontIcon className="fa fa-calendar-o" />
                           { detail[key].expensesDate
                             ? ' ' + dateformat(
                               new Date(detail[key].expensesDate * 1000), 'dd/mm/yyyy'
                             )
                             : '' }
-                        </div>
+                        </span>
                       </div>
                     }
-                    secondaryTextLines={2}
                   />
                   <Divider/>
                 </div>

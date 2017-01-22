@@ -8,6 +8,7 @@ import { formatNumber } from '../utils/numbers';
 
 const mapStateToProps = state => ({
   areaDetail: state.areaDetail,
+  eventTypes: state.eventTypes,
 });
 
 class Svg extends React.Component {
@@ -16,7 +17,8 @@ class Svg extends React.Component {
   }
 
   render() {
-    const { coordinates, bounds, zoom, possibleColors } = this.props;
+    const { coordinates, bounds, zoom, possibleColors, eventTypes } = this.props;
+    console.log(eventTypes, 'ET');
     const { coords, options } = coordinates;
     if (coords.length == 0)
         return null;
@@ -62,43 +64,55 @@ class Svg extends React.Component {
       cursor: 'pointer',
       zIndex: '1000000',
     };
-    const { areaDetail } = this.props;
+    const { info } = this.props.areaDetail;
 
     const Detail =
         <div style={markerStyle} className="hint__content">
-          <h3>{ areaDetail.info.name} </h3>
+          <h3>{ info.name} </h3>
           <div>
             Total Expenses:
             <b>
-              $ {
-                  areaDetail.info.totalExpenses
-                  ? formatNumber(areaDetail.info.totalExpenses)
+               {  ' $' + (
+                  info.totalExpenses
+                  ? formatNumber(info.totalExpenses)
                   : 0
+                )
                 }
             </b>
           </div>
-          <div>Total Plants: <b> { areaDetail.info.totalPlants} </b></div>
+          <div>Total Plants: <b> { info.totalPlants} </b></div>
           <div>Plantation Date: <b> {
-              areaDetail.info.dateItWasPlanted
-                ? dateformat(new Date(areaDetail.info.dateItWasPlanted * 1000), 'dd-mm-yyyy')
+              info.dateItWasPlanted
+                ? dateformat(new Date(info.dateItWasPlanted * 1000), 'dd-mm-yyyy')
                 : ''
             }
             </b>
           </div>
-          <div>Last Fertilization: <b> {
-              areaDetail.info.dateItWasPlanted
-                ? dateformat(new Date(areaDetail.info.lastFertilized * 1000), 'dd-mm-yyyy')
-                : ''
+            { info.lastEventAdded
+              && eventTypes[info.lastEventAdded.eventsType]
+              &&
+              <div>
+                Last Event Added:
+                <div style={{ marginLeft: '16px' }}>
+                  <div>Type:
+                    <b>
+                      { ' ' + eventTypes[info.lastEventAdded.eventsType].name}
+                    </b>
+                  </div>
+                  <div>Date:
+                    <b>
+                      {
+                        ' ' +
+                        dateformat(
+                          new Date(info.lastEventAdded.eventsExecutionDate * 1000),
+                          'dd-mm-yyyy'
+                        )
+                      }
+                    </b>
+                  </div>
+                </div>
+              </div>
             }
-            </b>
-          </div>
-          <div>Last Pest Control: <b> {
-              areaDetail.info.dateItWasPlanted
-                ? dateformat(new Date(areaDetail.info.lastPestControl * 1000), 'dd-mm-yyyy')
-                : ''
-            }
-            </b>
-          </div>
         </div>;
 
     return (
@@ -110,7 +124,7 @@ class Svg extends React.Component {
         >
           {drawChildCoords(coords)}
         </svg>
-        { areaDetail.show && Detail }
+        { this.props.areaDetail.show && Detail }
       </div>
     );
   }
