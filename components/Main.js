@@ -48,9 +48,9 @@ class Main extends React.Component {
 
   render() {
     const { user } = this.props;
-    // if (user.logged == -1) {
-    //   return <Loader />;
-    // }
+    if (user.logged == -1) {
+      return <Loader />;
+    }
 
     const headerValues = {
       title: 'CoffeeT',

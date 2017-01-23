@@ -43,9 +43,11 @@ export default function(state=defaultState, action) {
         if (!action.newsItem || !notifications.news.lastNotification) {
           return state;
         }
+
         if (action.newsItem.id == notifications.news.lastNotification.id) {
           return state;
         }
+
         notifications.news.lastNotification = action.newsItem;
         if (window.Notification) {
           if (state.supported && state.verified && state.permitted) {

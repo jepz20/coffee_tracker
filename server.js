@@ -13,9 +13,6 @@ app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-var React = require('react')
-var renderToString = require('react-dom/server').renderToString;
-var ReactRouter = require('react-router');
 
 app.use(function (req, res, next) {
   console.log(req.url);

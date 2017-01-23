@@ -26,12 +26,12 @@ class AddExpenses extends React.Component {
   constructor(props) {
     super(props);
     this.submitExpenses = this.submitExpenses.bind(this);
-    this.getDefaultInfo = this.getDefaultInfo.bind(this);
+    this.getPropertyInfo = this.getPropertyInfo.bind(this);
+    this.getCategoryInfo = this.getCategoryInfo.bind(this);
   }
 
-  getDefaultInfo() {
-    const { fetchPropertyById, expensesCategories,
-      fetchExpensesCategories, params, property, } = this.props;
+  getPropertyInfo() {
+    const { fetchPropertyById, params, property, } = this.props;
     if (params.propertyId) {
       if (property.propertyDetail) {
         if (property.propertyDetail.id == params.propertyId) {
@@ -41,18 +41,23 @@ class AddExpenses extends React.Component {
 
       fetchPropertyById(params.propertyId);
     }
+  }
 
+  getCategoryInfo() {
+    const { expensesCategories, fetchExpensesCategories } = this.props;
     if (expensesCategories.detail.length == 0) {
       fetchExpensesCategories();
     }
   }
 
   componentWillMount() {
-    this.getDefaultInfo();
+    this.getPropertyInfo();
+    this.getCategoryInfo();
   }
 
   componentWillUpdate(nextProps, nextState) {
-    this.getDefaultInfo();
+    this.getPropertyInfo();
+    this.getCategoryInfo();
   }
 
   submitExpenses(expenses) {
@@ -294,7 +299,7 @@ class AddExpenses extends React.Component {
 
     return (
       <FormLayout title={`Add Expenses to ${propertyDetail.name}`}>
-        <div className="general--form__inputs">
+        <div className="gene ral--form__inputs">
           <AddExpensesForm
             doSubmit={ (value) => this.submitExpenses(value) }
             registerError= { '' }

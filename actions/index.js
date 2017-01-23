@@ -2,7 +2,6 @@ import * as api from '../api';
 import { firebaseDb } from '../utils/firebase';
 import { pad } from '../utils/numbers';
 
-
 //NOTIFICATIONS actions
 
 export const setNotificationPermission = () => ({
