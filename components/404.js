@@ -1,16 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import * as actions from '../actions';
-import { Link } from 'react-router';
-import { Tabs, Tab } from 'material-ui/Tabs';
-import IconButton from 'material-ui/IconButton';
-import FontIcon from 'material-ui/FontIcon';
-import App from './App.js';
-
-const mapStateToProps = (state) => ({
-  header: state.header,
-});
-
+import { SecondaryButton } from './CoffeeButtons';
+import { hashHistory } from 'react-router';
+import { primaryColor } from '../styles/general';
 class Error404 extends React.Component {
 
   constructor(props) {
@@ -18,15 +9,27 @@ class Error404 extends React.Component {
   }
 
   render() {
+    const style = { width: '100%',
+      height: '100%',
+      backgroundColor: primaryColor.color,
+      position: 'absolute',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+    };
 
     return (
-      <div>
-        <div>I'm not, therefore I don't Exist</div>
-        <Link to="/"><button>I do Exist</button></Link>
+      <div style={ style }>
+        <div style={{ width: '50%', textAlign: 'center', margin: 'auto' }}>
+          <h2>Sorry This Page Doesn't Exists</h2>
+          <SecondaryButton
+            onClick={()=>hashHistory.push('/')}
+            label="Go To Home"
+          />
+        </div>
       </div>
     );
   }
 }
 
-Error404 = connect(mapStateToProps, actions)(Error404);
 export default Error404;

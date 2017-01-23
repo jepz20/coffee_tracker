@@ -80,7 +80,6 @@ class AddEvents extends React.Component {
       user: userDet,
     };
 
-    console.log(eventReadyToSubmit);
     saveEvent(propertyId, eventReadyToSubmit);
   }
 

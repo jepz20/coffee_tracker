@@ -16,7 +16,6 @@ const mapStateToProps = (state) => ({
 class Authentication extends React.Component {
 
   constructor(props) {
-    console.log('hello');
     super(props);
     this.redirectToPage = this.redirectToPage.bind(this);
   }

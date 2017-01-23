@@ -18,7 +18,6 @@ class Svg extends React.Component {
 
   render() {
     const { coordinates, bounds, zoom, possibleColors, eventTypes } = this.props;
-    console.log(eventTypes, 'ET');
     const { coords, options } = coordinates;
     if (coords.length == 0)
         return null;
