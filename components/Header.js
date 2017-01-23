@@ -71,6 +71,7 @@ class Header extends React.Component {
       <header onKeyDown= { handleTab }>
         <AppBar
           title= { <Link to="/" className="header__title">{ header.title }</Link>  }
+          titleStyle= { { paddingTop: '10px' }}
           onLeftIconButtonTouchTap = { toggleDrawerOpen }
           iconElementLeft={
             <IconButton

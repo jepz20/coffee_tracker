@@ -13,7 +13,6 @@ const PATHS = {
 config = {
   entry: {
     app: './index.js',
-    vendor: Object.keys(pkg.dependencies),
   },
   devtools: 'inline-source-map',
   output: {
@@ -112,9 +111,5 @@ excludedPackages = [
   'body-parser',
   'font-awesome',
 ];
-
-config.entry.vendor = config.entry.vendor.filter(e=>
-  excludedPackages.indexOf(e) < 0
-);
 
 module.exports = config;

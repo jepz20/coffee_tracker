@@ -556,6 +556,7 @@ header {
 .header__title, .header__title:hover{
   text-decoration: none;
   color: #5d4037;
+  font-weight: 800;
 }
 
 .news--landing h2 {

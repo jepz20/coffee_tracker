@@ -34,8 +34,7 @@ const muiTheme = getMuiTheme({
   palette: {
     primary1Color: '#6CC8C1',
     accent1Color: brown700,
-    textColor: '#000',
-    alternateTextColor: '#4E342E',
+    textColor: '#000', alternateTextColor: '#4E342E',
   },
   appBar: {
     height: 48,
@@ -43,10 +42,10 @@ const muiTheme = getMuiTheme({
 });
 
 import 'normalize.css';
-import './node_modules/font-awesome/css/font-awesome.min.css';
-// import './css/md.css';
+// import './node_modules/font-awesome/css/font-awesome.min.css';
 import './index.scss';
 import './css/main.css';
+import './css/icons.css';
 
 
 const store = configureStore();

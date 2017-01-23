@@ -29,6 +29,7 @@ app.use(express.static(root + '/dist', {
 }));
 
 app.use(favicon(__dirname + '/images/favicon.ico'));
+
 server = app.listen(port, serverStarted);
 
 function serverStarted() {

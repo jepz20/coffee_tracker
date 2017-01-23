@@ -1,6 +1,5 @@
 import React from 'react';
 import toPoints from '../utils/toPoints';
-import uuid from 'uuid';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 

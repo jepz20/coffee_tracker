@@ -54,7 +54,7 @@ class Main extends React.Component {
 
     const headerValues = {
       title: 'CoffeeT',
-      titleIcon: 'fa fa-tachometer',
+      titleIcon: 'fa fa-home',
       githubLink: 'https://github.com/jepz20/coffee_tracker',
       menuItems: [
         {
