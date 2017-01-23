@@ -6,7 +6,7 @@ author@Jose Eduardo Perdomo
 Capstone Project for the Senior Web Developer Nanodegree at Udacity
 
 ## Live Version
-Live version of the app: http://coffeet.herokuapp.com/
+Live version of the app: https://coffeet.herokuapp.com/
 
 ## Description
 App to keep track of the expenses and events related to a coffee plantation
