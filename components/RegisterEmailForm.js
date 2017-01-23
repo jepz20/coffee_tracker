@@ -54,9 +54,7 @@ const RegisterEmailForm = props => (
         validate={ [required, maxLength(50), minLength(2)] }
         label="Name" />
     { props.registerError && <div className="form--error"> { props.registerError } </div> }
-    <PrimaryButton label="Create Account" type="submit"
-      disabled={ (props.submitting || props.invalid) && !props.pristine }
-    />
+    <PrimaryButton label="Create Account" type="submit" />
   </form>
 );
 
