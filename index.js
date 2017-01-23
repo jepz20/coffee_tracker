@@ -42,11 +42,9 @@ const muiTheme = getMuiTheme({
 });
 
 import 'normalize.css';
-// import './node_modules/font-awesome/css/font-awesome.min.css';
 import './index.scss';
 import './css/main.css';
 import './css/icons.css';
-
 
 const store = configureStore();
 const history = syncHistoryWithStore(hashHistory, store);

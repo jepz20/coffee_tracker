@@ -13,6 +13,7 @@ const PATHS = {
 config = {
   entry: {
     app: './index.js',
+    vendor: ['react'],
   },
   devtools: 'inline-source-map',
   output: {
@@ -26,11 +27,6 @@ config = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
-    }),
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      'window.jQuery': 'jquery',
     }),
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor', 'manifest'],
@@ -99,17 +95,6 @@ if (process.env.NODE_ENV === 'production') {
         template: 'index_template_no_sw.ejs',
       })
     );
-  config.plugins.push(new CopyWebpackPlugin([
-      { from: 'data', to: 'data' },
-    ])
-  );
 };
-
-excludedPackages = [
-  'express',
-  'serve-favicon',
-  'body-parser',
-  'font-awesome',
-];
 
 module.exports = config;
