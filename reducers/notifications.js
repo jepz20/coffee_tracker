@@ -40,6 +40,9 @@ export default function(state=defaultState, action) {
         notifications.news.lastNotification = action.newsItem;
         return { ...state, notifications };
       } else {
+        if (!action.newsItem || !notifications.news.lastNotification) {
+          return state;
+        }
         if (action.newsItem.id == notifications.news.lastNotification.id) {
           return state;
         }
