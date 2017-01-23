@@ -203,6 +203,24 @@ export const fetchPropertyById = id => {
 };
 
 //NEWS ACTIONS
+
+export const fetchtNewestNews = (limitTo=1) => {
+  const newsRef =  firebaseDb.ref(`/news`);
+  return (
+    dispatch => {
+      newsRef.orderByKey()
+      .limitToLast(limitTo)
+      .on('child_added', (childSnapshot, prevChildKey) => {
+        dispatch({
+          type: 'SEND_NOTIFICATION_NEWS',
+          newsItem: childSnapshot.val(),
+          newsKey: childSnapshot.key,
+        });
+      });
+    }
+  );
+};
+
 export const fetchFirstNews = (limitTo=5) => {
   const newsRef =  firebaseDb.ref(`/news`);
   return (

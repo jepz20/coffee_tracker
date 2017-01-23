@@ -18,10 +18,12 @@ class App extends React.Component {
 
   setNotificationPermission() {
     if (this.props.user.logged < 1) {
-      const { notifications, setNotificationPermission } = this.props;
+      const { notifications, setNotificationPermission, fetchtNewestNews } = this.props;
       if (!notifications.verified) {
         setNotificationPermission();
       }
+
+      fetchtNewestNews();
     }
   }
 
@@ -41,7 +43,6 @@ class App extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log('actualice :D', this.props);
     this.setNotificationPermission();
   }
 

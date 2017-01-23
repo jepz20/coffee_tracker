@@ -37,6 +37,9 @@ config = {
     new CopyWebpackPlugin([
       { from: 'manifest.json', to: 'manifest.json' },
     ]),
+    new CopyWebpackPlugin([
+      { from: 'images', to: 'images' },
+    ]),
     new SWPrecacheWebpackPlugin({
       cacheId: 'coffeeT',
       filename: 'service-worker.js',
