@@ -22,6 +22,11 @@ Shows a Feed of curated news related with coffee, this news are stored in fireba
 
 When a news is added a web api notification is shown with the title
 
+There are two type of news:
+
+ 1. External links: opens in a new tab.
+ 2. Internal Links: Has its own landing with details of the news.
+
 ### Properties
 
 List of properties that are added. In the future, there should be a place to add properties and assign them to users.
