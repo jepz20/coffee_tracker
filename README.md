@@ -3,19 +3,19 @@ App to keep track of the expenses and events related to a coffee plantation
 
 # Coffee Tracker
 author@Jose Eduardo Perdomo
-Capstone Project for the Senior Web Developer Nanodegree at Udacity
 
 ## Live Version
 Live version of the app: https://coffeet.herokuapp.com/
 
 ## Description
-App to keep track of the expenses and events related to a coffee plantation
+Progressive Web App to keep track of the expenses and events related to a coffee plantation.
+Responsive, Mobile first, Offline first, installable Web Application built using React/Redux and Firebase.
 
 CoffetT has two main sections:
 
 1. News
 2. Properties
-3. (Bonus: Login system)
+3. Login system
 
 ### News
 Shows a Feed of curated news related with coffee, this news are stored in firebase and has an inifinte loader so not all news are loaded at once.
@@ -47,7 +47,7 @@ CoffeeT is serve using a simple express server, and uses React and redux as fram
 
 ## Installation
 
-Made with React and style with react-bootstrap
+Made with React and style with material-design
 
 to run locally:
 
