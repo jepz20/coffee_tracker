@@ -9,9 +9,10 @@ Live version of the app: https://coffeet.herokuapp.com/
 
 ## Description
 Progressive Web App to keep track of the expenses and events related to a coffee plantation.
+
 Responsive, Mobile first, Offline first, installable Web Application built using React/Redux and Firebase.
 
-CoffetT has two main sections:
+CoffeeT has two main sections:
 
 1. News
 2. Properties
