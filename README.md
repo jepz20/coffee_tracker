@@ -5,7 +5,7 @@ App to keep track of the expenses and events related to a coffee plantation
 author@Jose Eduardo Perdomo
 
 ## Live Version
-Live version of the app: https://coffeet.herokuapp.com/
+Live version of the app: https://coffeet.jepz.me/
 
 ## Description
 Progressive Web App to keep track of the expenses and events related to a coffee plantation.
